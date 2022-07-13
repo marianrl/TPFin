@@ -6,7 +6,7 @@ using TPFin.Models;
 
 namespace TPFin.Data
 {
-    class MyContext : DbContext
+    public class MyContext : DbContext
     {
         public DbSet<Usuario> usuarios { get; set; }
         public DbSet<Post> post { get; set; }
