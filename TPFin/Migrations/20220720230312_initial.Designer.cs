@@ -12,8 +12,8 @@ using TPFin.Data;
 namespace TPFin.Migrations
 {
     [DbContext(typeof(MyContext))]
-    [Migration("20220713012901_Initial")]
-    partial class Initial
+    [Migration("20220720230312_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -58,7 +58,7 @@ namespace TPFin.Migrations
                         {
                             id = 1,
                             contenido = "Argentina",
-                            fecha = new DateTime(2022, 7, 12, 22, 29, 0, 985, DateTimeKind.Local).AddTicks(2048),
+                            fecha = new DateTime(2022, 7, 20, 20, 3, 11, 305, DateTimeKind.Local).AddTicks(8432),
                             idPost = 1,
                             idUser = 1
                         },
@@ -66,7 +66,7 @@ namespace TPFin.Migrations
                         {
                             id = 2,
                             contenido = "Argentina",
-                            fecha = new DateTime(2022, 7, 12, 22, 29, 0, 985, DateTimeKind.Local).AddTicks(2061),
+                            fecha = new DateTime(2022, 7, 20, 20, 3, 11, 305, DateTimeKind.Local).AddTicks(8451),
                             idPost = 2,
                             idUser = 2
                         },
@@ -74,7 +74,7 @@ namespace TPFin.Migrations
                         {
                             id = 3,
                             contenido = "Argentina",
-                            fecha = new DateTime(2022, 7, 12, 22, 29, 0, 985, DateTimeKind.Local).AddTicks(2072),
+                            fecha = new DateTime(2022, 7, 20, 20, 3, 11, 305, DateTimeKind.Local).AddTicks(8468),
                             idPost = 3,
                             idUser = 3
                         });
@@ -109,21 +109,21 @@ namespace TPFin.Migrations
                         {
                             id = 1,
                             contenido = "Como estan?",
-                            fecha = new DateTime(2022, 7, 12, 22, 29, 0, 985, DateTimeKind.Local).AddTicks(2003),
+                            fecha = new DateTime(2022, 7, 20, 20, 3, 11, 305, DateTimeKind.Local).AddTicks(8358),
                             idUser = 1
                         },
                         new
                         {
                             id = 2,
                             contenido = "Todo bien por suerte",
-                            fecha = new DateTime(2022, 7, 12, 22, 29, 0, 985, DateTimeKind.Local).AddTicks(2027),
+                            fecha = new DateTime(2022, 7, 20, 20, 3, 11, 305, DateTimeKind.Local).AddTicks(8400),
                             idUser = 2
                         },
                         new
                         {
                             id = 3,
                             contenido = "Hola",
-                            fecha = new DateTime(2022, 7, 12, 22, 29, 0, 985, DateTimeKind.Local).AddTicks(2037),
+                            fecha = new DateTime(2022, 7, 20, 20, 3, 11, 305, DateTimeKind.Local).AddTicks(8414),
                             idUser = 3
                         });
                 });

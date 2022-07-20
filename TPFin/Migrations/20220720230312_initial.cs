@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace TPFin.Migrations
 {
-    public partial class Initial : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -183,32 +183,32 @@ namespace TPFin.Migrations
             migrationBuilder.InsertData(
                 table: "Post",
                 columns: new[] { "id", "contenido", "fecha", "idUser" },
-                values: new object[] { 1, "Como estan?", new DateTime(2022, 7, 12, 22, 29, 0, 985, DateTimeKind.Local).AddTicks(2003), 1 });
+                values: new object[] { 1, "Como estan?", new DateTime(2022, 7, 20, 20, 3, 11, 305, DateTimeKind.Local).AddTicks(8358), 1 });
 
             migrationBuilder.InsertData(
                 table: "Post",
                 columns: new[] { "id", "contenido", "fecha", "idUser" },
-                values: new object[] { 2, "Todo bien por suerte", new DateTime(2022, 7, 12, 22, 29, 0, 985, DateTimeKind.Local).AddTicks(2027), 2 });
+                values: new object[] { 2, "Todo bien por suerte", new DateTime(2022, 7, 20, 20, 3, 11, 305, DateTimeKind.Local).AddTicks(8400), 2 });
 
             migrationBuilder.InsertData(
                 table: "Post",
                 columns: new[] { "id", "contenido", "fecha", "idUser" },
-                values: new object[] { 3, "Hola", new DateTime(2022, 7, 12, 22, 29, 0, 985, DateTimeKind.Local).AddTicks(2037), 3 });
+                values: new object[] { 3, "Hola", new DateTime(2022, 7, 20, 20, 3, 11, 305, DateTimeKind.Local).AddTicks(8414), 3 });
 
             migrationBuilder.InsertData(
                 table: "Comentario",
                 columns: new[] { "id", "contenido", "fecha", "idPost", "idUser" },
-                values: new object[] { 1, "Argentina", new DateTime(2022, 7, 12, 22, 29, 0, 985, DateTimeKind.Local).AddTicks(2048), 1, 1 });
+                values: new object[] { 1, "Argentina", new DateTime(2022, 7, 20, 20, 3, 11, 305, DateTimeKind.Local).AddTicks(8432), 1, 1 });
 
             migrationBuilder.InsertData(
                 table: "Comentario",
                 columns: new[] { "id", "contenido", "fecha", "idPost", "idUser" },
-                values: new object[] { 2, "Argentina", new DateTime(2022, 7, 12, 22, 29, 0, 985, DateTimeKind.Local).AddTicks(2061), 2, 2 });
+                values: new object[] { 2, "Argentina", new DateTime(2022, 7, 20, 20, 3, 11, 305, DateTimeKind.Local).AddTicks(8451), 2, 2 });
 
             migrationBuilder.InsertData(
                 table: "Comentario",
                 columns: new[] { "id", "contenido", "fecha", "idPost", "idUser" },
-                values: new object[] { 3, "Argentina", new DateTime(2022, 7, 12, 22, 29, 0, 985, DateTimeKind.Local).AddTicks(2072), 3, 3 });
+                values: new object[] { 3, "Argentina", new DateTime(2022, 7, 20, 20, 3, 11, 305, DateTimeKind.Local).AddTicks(8468), 3, 3 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Comentario_idPost",

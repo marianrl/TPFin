@@ -1,8 +1,217 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+@{
+    ViewData["Title"] = "Home Page";
+}
+    <div>
+        <h1>Usuario</h1>  
+    </div>        
+  
+    <div>
+        <h2>Post </h2>
+        <textarea></textarea>
+    </div>
+    <div>
+        <h3>tags</h3>
+        <input/>
+    </div>
+    <button>Publicar</button>
+    <button>Ver Usuario</button>
+    <button>Modificar Usuario</button>
+    <button>Cerrar Sesión</button>
+         <div>
+        <h2>Posts </h2>
+           </div>
+   <table class="table">
+    <thead>
+        <tr>
+            <th>
+                a
+           @*     @Html.DisplayNameFor(model => model.user)*@
+            </th>
+            <th>
+                b
+             @*   @Html.DisplayNameFor(model => model.contenido)*@
+            </th>
+            <th>
+                c
+               @* @Html.DisplayNameFor(model => model.fecha)*@
+            </th>
+            <th>d</th>
+        </tr>
+    </thead>
+    <tbody>
+@*@foreach (var item in Model) {*@
+        <tr>
+            <td>
+             @*   @Html.DisplayFor(modelItem => item.user.id)*@
+            </td>
+            <td>
+              @*  @Html.DisplayFor(modelItem => item.contenido)*@
+            </td>
+            <td>
+              @*  @Html.DisplayFor(modelItem => item.fecha)*@
+            </td>
+            <td>
+                g
+              @*  <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.id">Delete</a>*@
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+ <button>Ver todos los posts</button>
+    <button>Ver post</button>
+    <button>eliminar post</button>
+    <button>ver mis posts</button>
+    <button>ver posts amigos</button>
+    <button>comentar post</button>
+    <div>
+        <h2>Comentarios </h2>  
+        <input/>
+    </div> 
+       <table class="table">
+    <thead>
+        <tr>
+            <th>
+                a
+           @*     @Html.DisplayNameFor(model => model.user)*@
+            </th>
+            <th>
+                b
+             @*   @Html.DisplayNameFor(model => model.contenido)*@
+            </th>
+            <th>
+                c
+               @* @Html.DisplayNameFor(model => model.fecha)*@
+            </th>
+            <th>d</th>
+        </tr>
+    </thead>
+    <tbody>
+@*@foreach (var item in Model) {*@
+        <tr>
+            <td>
+             @*   @Html.DisplayFor(modelItem => item.user.id)*@
+            </td>
+            <td>
+              @*  @Html.DisplayFor(modelItem => item.contenido)*@
+            </td>
+            <td>
+              @*  @Html.DisplayFor(modelItem => item.fecha)*@
+            </td>
+            <td>
+                g
+              @*  <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.id">Delete</a>*@
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+ <button>Editar Comentario</button>
+    <button>eliminar comentario</button>
+    <div>
+        <h2>Lista de Amigos </h2> 
+        <input/>
+    </div>
+       <table class="table">
+    <thead>
+        <tr>
+            <th>
+                a
+           @*     @Html.DisplayNameFor(model => model.user)*@
+            </th>
+            <th>
+                b
+             @*   @Html.DisplayNameFor(model => model.contenido)*@
+            </th>
+            <th>
+                c
+               @* @Html.DisplayNameFor(model => model.fecha)*@
+            </th>
+            <th>d</th>
+        </tr>
+    </thead>
+    <tbody>
+@*@foreach (var item in Model) {*@
+        <tr>
+            <td>
+             @*   @Html.DisplayFor(modelItem => item.user.id)*@
+            </td>
+            <td>
+              @*  @Html.DisplayFor(modelItem => item.contenido)*@
+            </td>
+            <td>
+              @*  @Html.DisplayFor(modelItem => item.fecha)*@
+            </td>
+            <td>
+                g
+              @*  <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.id">Delete</a>*@
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+  <button>eliminar amigo</button>
+    <div>
+        <h2>Buscar Amigos </h2> 
+        <input/>
+    </div>
+              <table class="table">
+    <thead>
+        <tr>
+            <th>
+                a
+           @*     @Html.DisplayNameFor(model => model.user)*@
+            </th>
+            <th>
+                b
+             @*   @Html.DisplayNameFor(model => model.contenido)*@
+            </th>
+            <th>
+                c
+               @* @Html.DisplayNameFor(model => model.fecha)*@
+            </th>
+            <th>d</th>
+        </tr>
+    </thead>
+    <tbody>
+@*@foreach (var item in Model) {*@
+        <tr>
+            <td>
+             @*   @Html.DisplayFor(modelItem => item.user.id)*@
+            </td>
+            <td>
+              @*  @Html.DisplayFor(modelItem => item.contenido)*@
+            </td>
+            <td>
+              @*  @Html.DisplayFor(modelItem => item.fecha)*@
+            </td>
+            <td>
+                g
+              @*  <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.id">Delete</a>*@
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+ <button>Agregar amigo</button>
+  
+    <div>
+        <h2>Búsqueda </h2> 
+        <input/>
+    </div>         
+       
+    
+   
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+
