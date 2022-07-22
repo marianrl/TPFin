@@ -57,6 +57,7 @@ namespace TPFin.Models
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("id,dni,nombre,apellido,email,password,intentosFallidos,bloqueado,isAdm")] Usuario usuario)
         {
+
             if (ModelState.IsValid)
             {
                 _context.Add(usuario);
@@ -146,7 +147,14 @@ namespace TPFin.Models
             }
             var usuario = await _context.usuarios.FindAsync(id);
             if (usuario != null)
-            {
+            {                   
+                foreach(Post a in _context.post)
+                {
+                    if(a.idUser == usuario.id)
+                    {
+                        _context.post.Remove(a);
+                    }
+                }
                 _context.usuarios.Remove(usuario);
             }
             
