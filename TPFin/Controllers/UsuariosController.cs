@@ -57,14 +57,9 @@ namespace TPFin.Models
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("id,dni,nombre,apellido,email,password,intentosFallidos,bloqueado,isAdm")] Usuario usuario)
         {
-
-            if (ModelState.IsValid)
-            {
-                _context.Add(usuario);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(usuario);
+            _context.Add(usuario);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: Usuarios/Edit/5
@@ -95,27 +90,23 @@ namespace TPFin.Models
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+            try
             {
-                try
-                {
-                    _context.Update(usuario);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!UsuarioExists(usuario.id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
+                _context.Update(usuario);
+                await _context.SaveChangesAsync();
             }
-            return View(usuario);
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!UsuarioExists(usuario.id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: Usuarios/Delete/5
@@ -145,16 +136,22 @@ namespace TPFin.Models
             {
                 return Problem("Entity set 'MyContext.usuarios'  is null.");
             }
+
             var usuario = await _context.usuarios.FindAsync(id);
             if (usuario != null)
-            {                   
-                foreach(Post a in _context.post)
+            {
+                foreach (Post a in _context.post)
                 {
-                    if(a.idUser == usuario.id)
+                    if (a.idUser == usuario.id)
                     {
                         _context.post.Remove(a);
                     }
                 }
+                _context.usuarios.Remove(usuario);
+            }
+
+            if (usuario != null)
+            {
                 _context.usuarios.Remove(usuario);
             }
             

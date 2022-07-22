@@ -58,14 +58,10 @@ namespace TPFin.Models
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("id,idUser,contenido,fecha")] Post post)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Add(post);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
+            _context.Add(post);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
             ViewData["idUser"] = new SelectList(_context.usuarios, "id", "id", post.idUser);
-            return View(post);
         }
 
         // GET: Posts/Edit/5
@@ -97,28 +93,24 @@ namespace TPFin.Models
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+            try
             {
-                try
-                {
-                    _context.Update(post);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!PostExists(post.id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
+                _context.Update(post);
+                await _context.SaveChangesAsync();
             }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!PostExists(post.id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+            return RedirectToAction(nameof(Index));
             ViewData["idUser"] = new SelectList(_context.usuarios, "id", "id", post.idUser);
-            return View(post);
         }
 
         // GET: Posts/Delete/5

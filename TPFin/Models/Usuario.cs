@@ -35,35 +35,6 @@ namespace TPFin.Models
             this.bloqueado = false;
             misPosts = new List<Post>();
             misComentarios = new List<Comentario>();
-            
-        }
-        public Usuario(int id, string nombre, string apellido, string mail, int dni, string pass, int intentosFallidos, bool bloqueado, bool isAdm)
-        {
-            this.nombre = nombre;
-            this.password = pass;
-            this.apellido = apellido; 
-            this.email = mail;  
-            this.dni = dni;
-            this.id = id;
-            this.intentosFallidos = 0;
-            this.isAdm = isAdm;
-            this.bloqueado = bloqueado;
-            misPosts = new List<Post>();
-            misComentarios = new List<Comentario>();
-        }
-
-        public Usuario(int id, string nombre, string apellido, string mail, int dni, string pass)
-        {
-            this.nombre = nombre;
-            this.password = pass;
-            this.apellido = apellido;
-            this.email = mail;
-            this.dni = dni;
-            this.id = id;
-            intentosFallidos = 0;
-            isAdm = false;
-            bloqueado = false;
-            misPosts = new List<Post>();
         }
     }
 }

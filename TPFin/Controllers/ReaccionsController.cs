@@ -60,15 +60,11 @@ namespace TPFin.Models
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("id,tipoReaccion,idPost,idUser")] Reaccion reaccion)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Add(reaccion);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
+            _context.Add(reaccion);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
             ViewData["idPost"] = new SelectList(_context.post, "id", "id", reaccion.idPost);
             ViewData["idUser"] = new SelectList(_context.usuarios, "id", "id", reaccion.idUser);
-            return View(reaccion);
         }
 
         // GET: Reaccions/Edit/5
@@ -101,8 +97,6 @@ namespace TPFin.Models
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
-            {
                 try
                 {
                     _context.Update(reaccion);
@@ -120,10 +114,8 @@ namespace TPFin.Models
                     }
                 }
                 return RedirectToAction(nameof(Index));
-            }
             ViewData["idPost"] = new SelectList(_context.post, "id", "id", reaccion.idPost);
             ViewData["idUser"] = new SelectList(_context.usuarios, "id", "id", reaccion.idUser);
-            return View(reaccion);
         }
 
         // GET: Reaccions/Delete/5

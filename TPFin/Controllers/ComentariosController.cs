@@ -60,15 +60,12 @@ namespace TPFin.Models
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("id,idPost,idUser,contenido,fecha")] Comentario comentario)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Add(comentario);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
+            _context.Add(comentario);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+
             ViewData["idPost"] = new SelectList(_context.post, "id", "id", comentario.idPost);
             ViewData["idUser"] = new SelectList(_context.usuarios, "id", "id", comentario.idUser);
-            return View(comentario);
         }
 
         // GET: Comentarios/Edit/5
@@ -101,29 +98,26 @@ namespace TPFin.Models
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+            try
             {
-                try
-                {
-                    _context.Update(comentario);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!ComentarioExists(comentario.id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
+                _context.Update(comentario);
+                await _context.SaveChangesAsync();
             }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!ComentarioExists(comentario.id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+            return RedirectToAction(nameof(Index));
+
             ViewData["idPost"] = new SelectList(_context.post, "id", "id", comentario.idPost);
             ViewData["idUser"] = new SelectList(_context.usuarios, "id", "id", comentario.idUser);
-            return View(comentario);
         }
 
         // GET: Comentarios/Delete/5

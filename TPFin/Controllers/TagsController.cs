@@ -57,13 +57,9 @@ namespace TPFin.Models
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("id,palabra")] Tag tag)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Add(tag);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(tag);
+            _context.Add(tag);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: Tags/Edit/5
@@ -94,27 +90,23 @@ namespace TPFin.Models
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+            try
             {
-                try
-                {
-                    _context.Update(tag);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!TagExists(tag.id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
+                _context.Update(tag);
+                await _context.SaveChangesAsync();
             }
-            return View(tag);
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!TagExists(tag.id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: Tags/Delete/5
