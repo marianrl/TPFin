@@ -1,139 +1,240 @@
-﻿@{ ViewData["Title"] = "Home Page"; } @{ ViewData["Title"] = "Home Page"; }
-<div>
-  <h1>Usuario</h1>
-</div>
+@{ ViewData["Title"] = "Home Page"; } @{ ViewData["Title"] = "Home Page"; }
 
-<div>
-  <h2>Post</h2>
-  <textarea></textarea>
-</div>
-<div>
-  <h3>tags</h3>
-  <input />
-</div>
-<button>Publicar</button>
-<button>Ver Usuario</button>
-<button>Modificar Usuario</button>
-<button>Cerrar Sesión</button>
-<div>
-  <h2>Posts</h2>
-</div>
-<table class="table">
-  <thead>
-    <tr>
-      <th>a @* @Html.DisplayNameFor(model => model.user)*@</th>
-      <th>b @* @Html.DisplayNameFor(model => model.contenido)*@</th>
-      <th>c @* @Html.DisplayNameFor(model => model.fecha)*@</th>
-      <th>d</th>
-    </tr>
-  </thead>
-  <tbody>
-    @*@foreach (var item in Model) {*@
-    <tr>
-      <td>@* @Html.DisplayFor(modelItem => item.user.id)*@</td>
-      <td>@* @Html.DisplayFor(modelItem => item.contenido)*@</td>
-      <td>@* @Html.DisplayFor(modelItem => item.fecha)*@</td>
-      <td>
-        g @* <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
-        <a asp-action="Details" asp-route-id="@item.id">Details</a> |
-        <a asp-action="Delete" asp-route-id="@item.id">Delete</a>*@
-      </td>
-    </tr>
-  </tbody>
-</table>
-<button>Ver todos los posts</button>
-<button>Ver post</button>
-<button>eliminar post</button>
-<button>ver mis posts</button>
-<button>ver posts amigos</button>
-<button>comentar post</button>
-<div>
-  <h2>Comentarios</h2>
-  <input />
-</div>
-<table class="table">
-  <thead>
-    <tr>
-      <th>a @* @Html.DisplayNameFor(model => model.user)*@</th>
-      <th>b @* @Html.DisplayNameFor(model => model.contenido)*@</th>
-      <th>c @* @Html.DisplayNameFor(model => model.fecha)*@</th>
-      <th>d</th>
-    </tr>
-  </thead>
-  <tbody>
-    @*@foreach (var item in Model) {*@
-    <tr>
-      <td>@* @Html.DisplayFor(modelItem => item.user.id)*@</td>
-      <td>@* @Html.DisplayFor(modelItem => item.contenido)*@</td>
-      <td>@* @Html.DisplayFor(modelItem => item.fecha)*@</td>
-      <td>
-        g @* <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
-        <a asp-action="Details" asp-route-id="@item.id">Details</a> |
-        <a asp-action="Delete" asp-route-id="@item.id">Delete</a>*@
-      </td>
-    </tr>
-  </tbody>
-</table>
-<button>Editar Comentario</button>
-<button>eliminar comentario</button>
-<div>
-  <h2>Lista de Amigos</h2>
-  <input />
-</div>
-<table class="table">
-  <thead>
-    <tr>
-      <th>a @* @Html.DisplayNameFor(model => model.user)*@</th>
-      <th>b @* @Html.DisplayNameFor(model => model.contenido)*@</th>
-      <th>c @* @Html.DisplayNameFor(model => model.fecha)*@</th>
-      <th>d</th>
-    </tr>
-  </thead>
-  <tbody>
-    @*@foreach (var item in Model) {*@
-    <tr>
-      <td>@* @Html.DisplayFor(modelItem => item.user.id)*@</td>
-      <td>@* @Html.DisplayFor(modelItem => item.contenido)*@</td>
-      <td>@* @Html.DisplayFor(modelItem => item.fecha)*@</td>
-      <td>
-        g @* <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
-        <a asp-action="Details" asp-route-id="@item.id">Details</a> |
-        <a asp-action="Delete" asp-route-id="@item.id">Delete</a>*@
-      </td>
-    </tr>
-  </tbody>
-</table>
-<button>eliminar amigo</button>
-<div>
-  <h2>Buscar Amigos</h2>
-  <input />
-</div>
-<table class="table">
-  <thead>
-    <tr>
-      <th>a @* @Html.DisplayNameFor(model => model.user)*@</th>
-      <th>b @* @Html.DisplayNameFor(model => model.contenido)*@</th>
-      <th>c @* @Html.DisplayNameFor(model => model.fecha)*@</th>
-      <th>d</th>
-    </tr>
-  </thead>
-  <tbody>
-    @*@foreach (var item in Model) {*@
-    <tr>
-      <td>@* @Html.DisplayFor(modelItem => item.user.id)*@</td>
-      <td>@* @Html.DisplayFor(modelItem => item.contenido)*@</td>
-      <td>@* @Html.DisplayFor(modelItem => item.fecha)*@</td>
-      <td>
-        g @* <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
-        <a asp-action="Details" asp-route-id="@item.id">Details</a> |
-        <a asp-action="Delete" asp-route-id="@item.id">Delete</a>*@
-      </td>
-    </tr>
-  </tbody>
-</table>
-<button>Agregar amigo</button>
+<div class="content-wrapper" style="min-height: 511px">
+  <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1 class="m-0">Usuario</h1>
+        </div>
+      </div>
+    </div>
+  </div>
 
-<div>
-  <h2>Búsqueda</h2>
-  <input />
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-8">
+                  <div>
+                    <h2>Post</h2>
+                    <textarea></textarea>
+                  </div>
+                  <div>
+                    <h3>tags</h3>
+                    <input />
+                  </div>
+                  <div>
+                    <a
+                      type="button"
+                      class="btn btn-primary"
+                      asp-controller=""
+                      asp-action=""
+                      asp-route-id="1"
+                      >Publicar</a>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="input-group mb-3">
+                    <span class="input-group-append">
+                      <a
+                        type="button"
+                        class="btn btn-info btn-flat"
+                        asp-controller="Usuarios"
+                        asp-action="Details"
+                        asp-route-id="1"
+                        >Ver Usuario</a>
+                      <a
+                        type="button"
+                        class="btn btn-warning"
+                        asp-controller=""
+                        asp-action=""
+                        asp-route-id="1"
+                        >Modificar Usuario</a>
+                      <a
+                        type="button"
+                        class="btn btn-danger"
+                        asp-controller=""
+                        asp-action=""
+                        asp-route-id="1"
+                        >Cerrar Sesión</a>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <section class="col-lg-7 connectedSortable ui-sortable">
+              <section class="col-lg-5 connectedSortable ui-sortable"></section>
+            </section>
+          </div>
+        </div>
+
+        <section class="col-lg-7 connectedSortable ui-sortable">
+          <div class="card">
+            <div class="card-header ui-sortable-handle" style="cursor: move">
+              <h3 class="card-title">
+                <i class="fas fa-chart-pie mr-1"></i>
+                Posts
+              </h3>
+            </div>
+            <div class="card-body">
+              <div class="tab-content p-0">
+                <div
+                  class="chart tab-pane active"
+                  id="revenue-chart"
+                  style="position: relative; height: 300px"
+                >
+                  <div class="chartjs-size-monitor">
+                    <div class="chartjs-size-monitor-expand">
+                      <div class=""></div>
+                    </div>
+                    <div class="chartjs-size-monitor-shrink">
+                      <div class=""></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="col-lg-5 connectedSortable ui-sortable">
+          <div class="card" style="position: relative; left: 0px; top: 0px">
+            <div class="card-header ui-sortable-handle" style="cursor: move">
+              <h3 class="card-title">
+                <i class="fas fa-chart-pie mr-1"></i>
+                Comentarios
+              </h3>
+            </div>
+            <div class="card-body">
+              <div class="tab-content p-0">
+                <div
+                  class="chart tab-pane active"
+                  id="revenue-chart"
+                  style="position: relative; height: 300px"
+                >
+                  <form action="#" method="post">
+                    <div class="input-group">
+                      <input
+                        type="text"
+                        name="message"
+                        placeholder="Type Message ..."
+                        class="form-control"
+                      />
+                      <span class="input-group-append">
+                        <button type="button" class="btn btn-primary">
+                          Comentar
+                        </button>
+                        <button type="button" class="btn btn-success">
+                          Editar
+                        </button>
+                        <button type="button" class="btn btn-danger">
+                          Eliminar
+                        </button>
+                      </span>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="col-lg-7 connectedSortable ui-sortable">
+          <div class="card">
+            <div class="card-header ui-sortable-handle" style="cursor: move">
+              <h3 class="card-title">
+                <i class="fas fa-chart-pie mr-1"></i>
+                Amigos
+              </h3>
+            </div>
+            <div class="card-body">
+              <div class="tab-content p-0">
+                <div
+                  class="chart tab-pane active"
+                  id="revenue-chart"
+                  style="position: relative; height: 300px"
+                >
+                  <div class="chartjs-size-monitor">
+                    <div class="chartjs-size-monitor-expand">
+                      <div class=""></div>
+                    </div>
+                    <div class="chartjs-size-monitor-shrink">
+                      <div class=""></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="col-lg-5 connectedSortable ui-sortable">
+          <div class="card" style="position: relative; left: 0px; top: 0px">
+            <div class="card-header ui-sortable-handle" style="cursor: move">
+              <h3 class="card-title">
+                <i class="fas fa-chart-pie mr-1"></i>
+                Listado de amigos
+              </h3>
+            </div>
+            <div class="card-body">
+              <div class="tab-content p-0">
+                <div
+                  class="chart tab-pane active"
+                  id="revenue-chart"
+                  style="position: relative; height: 300px"
+                >
+                  <form action="#" method="post">
+                    <div class="input-group">
+                      <span class="input-group-append">
+                        <button type="button" class="btn btn-primary">
+                          Agregar
+                        </button>
+                        <button type="button" class="btn btn-danger">
+                          Eliminar
+                        </button>
+                      </span>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="col-lg-15 connectedSortable ui-sortable">
+          <div class="card">
+            <div class="card-header ui-sortable-handle" style="cursor: move">
+              <h3 class="card-title">
+                <i class="fas fa-chart-pie mr-1"></i>
+                Busqueda
+              </h3>
+            </div>
+            <div class="card-body">
+              <div class="tab-content p-0">
+                <div
+                  class="chart tab-pane active"
+                  id="revenue-chart"
+                  style="position: relative; height: 300px"
+                >
+                  <div class="chartjs-size-monitor">
+                    <div class="chartjs-size-monitor-expand">
+                      <div class=""></div>
+                    </div>
+                    <div class="chartjs-size-monitor-shrink">
+                      <div class=""></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </section>
 </div>
