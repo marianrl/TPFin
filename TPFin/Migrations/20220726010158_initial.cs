@@ -10,6 +10,20 @@ namespace TPFin.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "Login",
+                columns: table => new
+                {
+                    id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    user = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    password = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Login", x => x.id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Tag",
                 columns: table => new
                 {
@@ -183,32 +197,32 @@ namespace TPFin.Migrations
             migrationBuilder.InsertData(
                 table: "Post",
                 columns: new[] { "id", "contenido", "fecha", "idUser" },
-                values: new object[] { 1, "Como estan?", new DateTime(2022, 7, 20, 20, 3, 11, 305, DateTimeKind.Local).AddTicks(8358), 1 });
+                values: new object[] { 1, "Como estan?", new DateTime(2022, 7, 25, 22, 1, 58, 592, DateTimeKind.Local).AddTicks(9434), 1 });
 
             migrationBuilder.InsertData(
                 table: "Post",
                 columns: new[] { "id", "contenido", "fecha", "idUser" },
-                values: new object[] { 2, "Todo bien por suerte", new DateTime(2022, 7, 20, 20, 3, 11, 305, DateTimeKind.Local).AddTicks(8400), 2 });
+                values: new object[] { 2, "Todo bien por suerte", new DateTime(2022, 7, 25, 22, 1, 58, 592, DateTimeKind.Local).AddTicks(9458), 2 });
 
             migrationBuilder.InsertData(
                 table: "Post",
                 columns: new[] { "id", "contenido", "fecha", "idUser" },
-                values: new object[] { 3, "Hola", new DateTime(2022, 7, 20, 20, 3, 11, 305, DateTimeKind.Local).AddTicks(8414), 3 });
+                values: new object[] { 3, "Hola", new DateTime(2022, 7, 25, 22, 1, 58, 592, DateTimeKind.Local).AddTicks(9471), 3 });
 
             migrationBuilder.InsertData(
                 table: "Comentario",
                 columns: new[] { "id", "contenido", "fecha", "idPost", "idUser" },
-                values: new object[] { 1, "Argentina", new DateTime(2022, 7, 20, 20, 3, 11, 305, DateTimeKind.Local).AddTicks(8432), 1, 1 });
+                values: new object[] { 1, "Argentina", new DateTime(2022, 7, 25, 22, 1, 58, 592, DateTimeKind.Local).AddTicks(9482), 1, 1 });
 
             migrationBuilder.InsertData(
                 table: "Comentario",
                 columns: new[] { "id", "contenido", "fecha", "idPost", "idUser" },
-                values: new object[] { 2, "Argentina", new DateTime(2022, 7, 20, 20, 3, 11, 305, DateTimeKind.Local).AddTicks(8451), 2, 2 });
+                values: new object[] { 2, "Argentina", new DateTime(2022, 7, 25, 22, 1, 58, 592, DateTimeKind.Local).AddTicks(9498), 2, 2 });
 
             migrationBuilder.InsertData(
                 table: "Comentario",
                 columns: new[] { "id", "contenido", "fecha", "idPost", "idUser" },
-                values: new object[] { 3, "Argentina", new DateTime(2022, 7, 20, 20, 3, 11, 305, DateTimeKind.Local).AddTicks(8468), 3, 3 });
+                values: new object[] { 3, "Argentina", new DateTime(2022, 7, 25, 22, 1, 58, 592, DateTimeKind.Local).AddTicks(9510), 3, 3 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Comentario_idPost",
@@ -250,6 +264,9 @@ namespace TPFin.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Comentario");
+
+            migrationBuilder.DropTable(
+                name: "Login");
 
             migrationBuilder.DropTable(
                 name: "Posts_Tags");

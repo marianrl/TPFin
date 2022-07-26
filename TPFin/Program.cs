@@ -2,7 +2,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using TPFin.Data;
 using Microsoft.AspNetCore.Identity;
-using TPFin.Areas.Identity.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -35,6 +34,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Login}/{action=Index}");
 
 app.Run();
