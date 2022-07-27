@@ -1,270 +1,298 @@
-@model IEnumerable<TPFin.Models.Post>
-
-@{ ViewData["Title"] = "Home"; }
+@using TPFin.Controllers 
 
 
-<div class="content-wrapper" style="min-height: 511px">
-  <div class="content-header">
-    <div class="container-fluid">
-      <div class="row mb-2">
-        <div class="col-sm-6">
-          <h1 class="m-0">Usuario</h1>
-        </div>
-      </div>
-    </div>
-  </div>
+@{ ViewData["Title"] = "Home"; 
+    IEnumerable<Post> post = ViewData["Posts"] as IEnumerable<Post>; 
+    IEnumerable<Usuario> usuarios = ViewData["Usuario"] as IEnumerable<Usuario>; 
+}
 
-  <section class="content">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="card">
-            <div class="card-body">
+        <div class="content-wrapper" style="min-height: 511px">
+          <div class="content-header">
+            <div class="container-fluid">
+              <div class="row mb-2">
+                <div class="col-sm-6">
+                  <h1 class="m-0">Usuario</h1>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <section class="content">
+            <div class="container-fluid">
               <div class="row">
-                <div class="col-md-8">
-                  <div>
-                    <h2>Post</h2>
-                    <textarea></textarea>
-                  </div>
-                  <div>
-                    <h3>tags</h3>
-                    <input />
-                  </div>
-                  <div>
-                    <a
-                      type="button"
-                      class="btn btn-primary"
-                      asp-controller=""
-                      asp-action=""
-                      asp-route-id="1"
-                      >Publicar</a>
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="input-group mb-3">
-                    <span class="input-group-append">
-                      <a
-                        type="button"
-                        class="btn btn-info btn-flat"
-                        asp-controller="Usuarios"
-                        asp-action="Details"
-                        asp-route-id="1"
-                        >Ver Usuario</a>
-                      <a
-                        type="button"
-                        class="btn btn-warning"
-                        asp-controller=""
-                        asp-action=""
-                        asp-route-id="1"
-                        >Modificar Usuario</a>
-                      <a
-                        type="button"
-                        class="btn btn-danger"
-                        asp-controller=""
-                        asp-action=""
-                        asp-route-id="1"
-                        >Cerrar Sesión</a>
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <section class="col-lg-7 connectedSortable ui-sortable">
-              <section class="col-lg-5 connectedSortable ui-sortable"></section>
-            </section>
-          </div>
-        </div>
-
-        <section class="col-lg-7 connectedSortable ui-sortable">
-          <div class="card">
-            <div class="card-header ui-sortable-handle" style="cursor: move">
-              <h3 class="card-title">
-                <i class="fas fa-chart-pie mr-1"></i>
-                Posts
-              </h3>
-            </div>
-            <div class="card-body">
-              <div class="tab-content p-0">
-                <div
-                  class="chart tab-pane active"
-                  style="position: relative; height: 300px"
-                >
-                    @*<table class="table">
-                        <thead>
-                            <tr>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.user)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.contenido)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.fecha)
-                                </th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var item in Model) {
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.user.id)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.contenido)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.fecha)
-                                </td>
-                                <td>
-                                    <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
-                                    <a asp-action="Details" asp-route-id="@item.id">Details</a> |
-                                    <a asp-action="Delete" asp-route-id="@item.id">Delete</a>
-                                </td>
-                            </tr>
-                            }
-                        </tbody>
-                    </table>*@
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section class="col-lg-5 connectedSortable ui-sortable">
-          <div class="card" style="position: relative; left: 0px; top: 0px">
-            <div class="card-header ui-sortable-handle" style="cursor: move">
-              <h3 class="card-title">
-                <i class="fas fa-chart-pie mr-1"></i>
-                Comentarios
-              </h3>
-            </div>
-            <div class="card-body">
-              <div class="tab-content p-0">
-                <div
-                  class="chart tab-pane active"
-                  id="revenue-chart"
-                  style="position: relative; height: 300px"
-                >
-                  <form action="#" method="post">
-                    <div class="input-group">
-                      <input
-                        type="text"
-                        name="message"
-                        placeholder="Type Message ..."
-                        class="form-control"
-                      />
-                      <span class="input-group-append">
-                        <button type="button" class="btn btn-primary">
-                          Comentar
-                        </button>
-                        <button type="button" class="btn btn-success">
-                          Editar
-                        </button>
-                        <button type="button" class="btn btn-danger">
-                          Eliminar
-                        </button>
-                      </span>
-                    </div>
-                  </form>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section class="col-lg-7 connectedSortable ui-sortable">
-          <div class="card">
-            <div class="card-header ui-sortable-handle" style="cursor: move">
-              <h3 class="card-title">
-                <i class="fas fa-chart-pie mr-1"></i>
-                Amigos
-              </h3>
-            </div>
-            <div class="card-body">
-              <div class="tab-content p-0">
-                <div
-                  class="chart tab-pane active"
-                  id="revenue-chart"
-                  style="position: relative; height: 300px"
-                >
-                  <div class="chartjs-size-monitor">
-                    <div class="chartjs-size-monitor-expand">
-                      <div class=""></div>
-                    </div>
-                    <div class="chartjs-size-monitor-shrink">
-                      <div class=""></div>
+                <div class="col-md-12">
+                  <div class="card">
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="col-md-8">
+                          <div>
+                            <h2>Post</h2>
+                            <textarea></textarea>
+                          </div>
+                          <div>
+                            <h3>tags</h3>
+                            <input />
+                          </div>
+                          <div>
+                            <a
+                              type="button"
+                              class="mt-3 btn btn-primary"
+                              asp-controller=""
+                              asp-action=""
+                              asp-route-id="1"
+                              >Publicar</a>
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="input-group mb-3">
+                            <span class="input-group-append">
+                              <a
+                                type="button"
+                                class="btn btn-info btn-flat"
+                                asp-controller="Usuarios"
+                                asp-action="Details"
+                                asp-route-id="1"
+                                >Ver Usuario</a>
+                              <a
+                                type="button"
+                                class="btn btn-warning"
+                                asp-controller=""
+                                asp-action=""
+                                asp-route-id="1"
+                                >Modificar Usuario</a>
+                              <a
+                                type="button"
+                                class="btn btn-danger"
+                                asp-controller=""
+                                asp-action=""
+                                asp-route-id="1"
+                                >Cerrar Sesión</a>
+                            </span>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
-          </div>
-        </section>
 
-        <section class="col-lg-5 connectedSortable ui-sortable">
-          <div class="card" style="position: relative; left: 0px; top: 0px">
-            <div class="card-header ui-sortable-handle" style="cursor: move">
-              <h3 class="card-title">
-                <i class="fas fa-chart-pie mr-1"></i>
-                Listado de amigos
-              </h3>
-            </div>
-            <div class="card-body">
-              <div class="tab-content p-0">
-                <div
-                  class="chart tab-pane active"
-                  id="revenue-chart"
-                  style="position: relative; height: 300px"
-                >
-                  <form action="#" method="post">
-                    <div class="input-group">
-                      <span class="input-group-append">
-                        <button type="button" class="btn btn-primary">
-                          Agregar
-                        </button>
-                        <button type="button" class="btn btn-danger">
-                          Eliminar
-                        </button>
-                      </span>
-                    </div>
-                  </form>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+                <div class="container-fluid">
+                  @*Inicio car Post*@
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="card">
+                        <div class="card-body">
+                          <div class="row">
+                            <div class="col-md-8">
+                              <h3 class="card-title">
+                                <i class="fas fa-chart-pie mr-1"></i>
+                                Posts
+                              </h3>
+                            </div>
+                            <div class="card-body">
+                              <div
+                                class="direct-chat-messages overflow-y: overflow-scroll"
+                              >
+                                <div
+                                  class="chart tab-pane active"
+                                  style="position: relative; height: 300px"
+                                >
+                                  <table class="table">
+                                    <thead>
+                                      <tr>
+                                        <th>Apellido y Nombre</th>
+                                        <th>Contenido</th>
+                                        <th>Fecha</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      @foreach (Post p in post) {
+                                      <tr>
+                                        <td>@p.user.apellido @p.user.nombre</td>
+                                        <td>@p.contenido</td>
+                                        <td>@p.fecha</td>
+                                      </tr>
 
-        <section class="col-lg-15 connectedSortable ui-sortable">
-          <div class="card">
-            <div class="card-header ui-sortable-handle" style="cursor: move">
-              <h3 class="card-title">
-                <i class="fas fa-chart-pie mr-1"></i>
-                Busqueda
-              </h3>
-            </div>
-            <div class="card-body">
-              <div class="tab-content p-0">
-                <div
-                  class="chart tab-pane active"
-                  id="revenue-chart"
-                  style="position: relative; height: 300px"
-                >
-                  <div class="chartjs-size-monitor">
-                    <div class="chartjs-size-monitor-expand">
-                      <div class=""></div>
-                    </div>
-                    <div class="chartjs-size-monitor-shrink">
-                      <div class=""></div>
+                                      <tr>
+                                        <td>
+                                          <a
+                                            type="button"
+                                            class="btn-sm btn-success"
+                                            asp-controller="Posts"
+                                            asp-action="Edit"
+                                            asp-route-id="@p.id"
+                                          >
+                                            Editar</a>
+                                          |
+                                          <a
+                                            type="button"
+                                            class="btn-sm btn-danger"
+                                            asp-controller="Posts"
+                                            asp-action="Delete"
+                                            asp-route-id="@p.id"
+                                          >
+                                            Eliminar</a>
+                                          |
+
+                                          <a
+                                            type="button"
+                                            class="btn-sm btn-primary"
+                                            asp-controller="Comentarios"
+                                            asp-action="Create"
+                                            asp-route-id="@p.id"
+                                          >
+                                            Comentar</a>
+                                        </td>
+                                      </tr>
+                                      }
+                                    </tbody>
+                                  </table>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
+
+                  @*Inicio car Comentarios*@
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="card">
+                        <div class="card-body">
+                          <div class="row">
+                            <div class="col-md-8">
+                              <h3 class="card-title">
+                                <i class="fas fa-chart-pie mr-1"></i>
+                                Comentarios
+                              </h3>
+                            </div>
+                            <div class="card-body">
+                              <div
+                                class="direct-chat-messages overflow-y: overflow-scroll"
+                              >
+                                <div
+                                  class="chart tab-pane active"
+                                  style="position: relative; height: 300px"
+                                ></div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <section class="col-lg-7 connectedSortable ui-sortable">
+                    <div class="card">
+                      <div
+                        class="card-header ui-sortable-handle"
+                        style="cursor: move"
+                      >
+                        <h3 class="card-title">
+                          <i class="fas fa-chart-pie mr-1"></i>
+                          Amigos
+                        </h3>
+                      </div>
+                      <div class="card-body">
+                        <div class="tab-content p-0">
+                          <div
+                            class="chart tab-pane active"
+                            id="revenue-chart"
+                            style="position: relative; height: 300px"
+                          >
+                            <table class="table">
+                              <thead>
+                                <tr>
+                                  <th></th>
+
+                                  <th></th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                @foreach (Usuario u in usuarios) {
+                                <tr>
+                                  <td>@u.nombre @u.apellido</td>
+                                  <td>
+                                    <a
+                                      type="button"
+                                      class="btn btn-primary"
+                                      asp-controller="Usuarios"
+                                      asp-action="Details"
+                                      asp-route-id="@u.id"
+                                    >
+                                      Agregar
+                                    </a>
+                                  </td>
+                                </tr>
+                                }
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </section>
+                  <section class="col-lg-5 connectedSortable ui-sortable">
+                    <div
+                      class="card"
+                      style="position: relative; left: 0px; top: 0px"
+                    >
+                      <div
+                        class="card-header ui-sortable-handle"
+                        style="cursor: move"
+                      >
+                        <h3 class="card-title">
+                          <i class="fas fa-chart-pie mr-1"></i>
+                          Listado de amigos
+                        </h3>
+                      </div>
+                      <div class="card-body">
+                        <div class="tab-content p-0">
+                          <div
+                            class="chart tab-pane active"
+                            id="revenue-chart"
+                            style="position: relative; height: 300px"
+                          >
+                            
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </section>
+
+                  <section class="col-lg-15 connectedSortable ui-sortable">
+                    <div class="card">
+                      <div
+                        class="card-header ui-sortable-handle"
+                        style="cursor: move"
+                      >
+                        <h3 class="card-title">
+                          <i class="fas fa-chart-pie mr-1"></i>
+                          Busqueda
+                        </h3>
+                      </div>
+                      <div class="card-body">
+                        <div class="tab-content p-0">
+                          <div
+                            class="chart tab-pane active"
+                            id="revenue-chart"
+                            style="position: relative; height: 300px"
+                          >
+                            <div class="chartjs-size-monitor">
+                              <div class="chartjs-size-monitor-expand">
+                                <div class=""></div>
+                              </div>
+                              <div class="chartjs-size-monitor-shrink">
+                                <div class=""></div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </section>
                 </div>
               </div>
             </div>
-          </div>
-        </section>
-      </div>
-    </div>
-  </section>
-</div>
+          </section>
