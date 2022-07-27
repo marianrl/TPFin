@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -24,6 +24,9 @@ namespace TPFin.Models
             var myContext = _context.post.Include(p => p.user);
             return View(await myContext.ToListAsync());
         }
+
+
+
 
         // GET: Posts/Details/5
         public async Task<IActionResult> Details(int? id)
