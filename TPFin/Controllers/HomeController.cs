@@ -17,10 +17,9 @@ namespace TPFin.Controllers
 
         public IActionResult Index()
         {
-
             var postContext = _context.post.Include(p => p.user);
             var usuariosContext = _context.usuarios;
-
+            var userId = HttpContext.Session.GetInt32("_id");
             ViewData["Posts"] = postContext.ToList();
             _ = usuariosContext != null ?
                 ViewData["Usuario"] = usuariosContext.ToList() :

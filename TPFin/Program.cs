@@ -2,10 +2,14 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using TPFin.Data;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Session;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession();
+
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<MyContext>(options =>
@@ -25,12 +29,16 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
 app.UseStaticFiles();
 
 app.UseRouting();
+
 app.UseAuthentication();;
 
 app.UseAuthorization();
+
+app.UseSession();
 
 app.MapControllerRoute(
     name: "default",

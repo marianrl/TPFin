@@ -7,6 +7,8 @@ namespace TPFin.Controllers
     public class LoginController : Controller
     {
         MyContext db = new MyContext();
+
+        public const string SessionIdKey = "_id";
         public IActionResult Index()
         {
             return View();
@@ -17,10 +19,17 @@ namespace TPFin.Controllers
         {
             if(db.usuarios != null)
             {
-                var user = db.usuarios.Where(x => x.email == usuario.email && x.password == usuario.password).Count();
-                if (user > 0)
+                var user = db.usuarios.Where(x => x.email == usuario.email && x.password == usuario.password);
+                if (user != null)
                 {
-                    //ISession
+                    int[] userId = (from Usuario in db.usuarios
+                              where Usuario.email == usuario.email && Usuario.password == usuario.password
+                              select Usuario.id).ToArray();
+
+                    if (userId != null && userId.ToString() != null)
+                    {
+                        HttpContext.Session.SetInt32(SessionIdKey, userId[0]);
+                    }
                     return RedirectToAction("Index", "Home");
                 }
                 else
