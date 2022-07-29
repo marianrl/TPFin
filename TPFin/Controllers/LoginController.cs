@@ -13,6 +13,7 @@ namespace TPFin.Controllers
         public const string SessionAdminKey = "_admin";
         public const string SessionBlockKey = "_block";
         public const string SessionIntFalKey = "_intfall";
+        public const string SessionEmailKey = "_email";
         public IActionResult Index()
         {
             return View();
@@ -24,6 +25,11 @@ namespace TPFin.Controllers
             if(db.usuarios != null)
             {
                 var user = db.usuarios.Where(x => x.email == usuario.email && x.password == usuario.password).SingleOrDefault();
+
+                string[] userEmail = (from Usuario in db.usuarios
+                                      where Usuario.email == usuario.email
+                                      select Usuario.email).ToArray();
+
                 if (user != null)
                 {
                     int[] userId = (from Usuario in db.usuarios
@@ -67,8 +73,16 @@ namespace TPFin.Controllers
                 }
                 else
                 {
-                    TempData["Message"] = "Usuario no encontrado, favor de registrarse";
-                    return View();
+                    if (userEmail[0] == usuario.email)
+                    {
+                        
+                        usuario.intentosFallidos++;
+                        db.usuarios.Update(usuario);
+                        TempData["Message"] = "Contrseña mal ingresada, intente de nuevo";
+                    }
+
+                        TempData["Message"] = "Usuario no encontrado, favor de registrarse";
+                        return View();
                 }
                 
             }

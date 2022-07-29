@@ -124,6 +124,15 @@
 													</div>
 												</div>
 												<div class="job_descp">
+
+													<ul class="job-dt">
+														<li><a 
+															asp-controller="Posts"
+															asp-action="Delete"
+															asp-route-id=@p.id>Eliminar Post</a></li>
+													</ul>
+
+
 													<p>@p.contenido</p>
 													<ul class="skill-tags">
 																										<!-- Listado de Tags-->
@@ -145,6 +154,8 @@
 														</li>
 													</ul>
 												</div>
+
+
 											</div><!--post-bar end-->
 											<div class="comment-section">
 												<div class="comment-sec">
