@@ -9,340 +9,227 @@
     
 }
 
-        <div class="content-wrapper" style="min-height: 511px">
-          <div class="content-header">
-            <div class="container-fluid">
-              <div class="row mb-2">
-                <div class="col-sm-6">
-                  <h1 class="m-0">Bienvenido, @Accessor.HttpContext.Session.GetString("_nombre") </h1>
-                </div>
-              </div>
-            </div>
-          </div>
 
-          <section class="content">
-            <div class="container-fluid">
-              <div class="row">
-                <div class="col-md-12">
-                  <div class="card">
-                    <div class="card-body">
-                      <div class="row">
-                        <div class="col-md-8">
-                          <div>
-                            <h2>Post</h2>
-                            <textarea></textarea>
-                          </div>
-                          <div>
-                            <h3>tags</h3>
-                            <input />
-                          </div>
-                          <div>
-                            <a
-                              type="button"
-                              class="mt-3 btn btn-primary"
-                              asp-controller=""
-                              asp-action=""
-                              asp-route-id="1"
-                              >Publicar</a>
-                          </div>
-                        </div>
-                        <div class="col-md-4">
-                          <div class="input-group mb-3">
-                            <span class="input-group-append">
-                              <a
-                                type="button"
-                                class="btn btn-info btn-flat mr-3 mb-3"
-                                asp-controller="Usuarios"
-                                asp-action="Details"
-                                asp-route-id="@Accessor.HttpContext.Session.GetInt32("_id")"
-                                >Ver Usuario</a>
-                              <a
-                                type="button"
-                                class="btn btn-warning  mb-3 "
-                                asp-controller="Usuarios"
-                                asp-action="Edit"
-                                asp-route-id="@Accessor.HttpContext.Session.GetInt32("_id")"
-                                >Modificar Usuario</a>
-                              <a
-                                type="button"
-                                class="btn btn-danger mb-3" 
-                                asp-controller=""
-                                asp-action=""
-                                asp-route-id="1"
-                                >Cerrar Sesión</a>
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
 
-                <div class="container-fluid">
-                  @*Inicio car Post*@
-                  <div class="row">
-                    <div class="col-md-12">
-                      <div class="card">
-                        <div class="card-body">
-                          <div class="row">
-                            <div class="col-md-8">
-                              <h3 class="card-title">
-                                <i class="fas fa-chart-pie mr-1"></i>
-                                Posts
-                              </h3>
-                            </div>
-                            <div class="card-body">
-                              <div
-                                class="direct-chat-messages overflow-y: overflow-scroll"
-                              >
-                                <div
-                                  class="chart tab-pane active"
-                                  style="position: relative; height: 300px"
-                                >
-                                  <table class="table">
-                                    <thead>
-                                      <tr>
-                                        <th>Apellido y Nombre</th>
-                                        <th>Contenido</th>
-                                        <th>Fecha</th>
-                                      </tr>
-                                    </thead>
-                                    <tbody>
-                                      @foreach (Post p in post) {
-                                      <tr>
-                                        <td>@p.user.apellido @p.user.nombre</td>
-                                        <td>@p.contenido</td>
-                                        <td>@p.fecha</td>
-                                      </tr>
 
-                                      <tr>
-                                        <td>
-                                          <a
-                                            type="button"
-                                            class="btn-sm btn-success"
-                                            asp-controller="Posts"
-                                            asp-action="Edit"
-                                            asp-route-id="@p.id"
-                                          >
-                                            Editar</a>
-                                          |
-                                          <a
-                                            type="button"
-                                            class="btn-sm btn-danger"
-                                            asp-controller="Posts"
-                                            asp-action="Delete"
-                                            asp-route-id="@p.id"
-                                          >
-                                            Eliminar</a>
-                                          |
+<body>	
 
-                                          <a
-                                            type="button"
-                                            class="btn-sm btn-info"
-                                            asp-controller=""
-                                            asp-action=""
-                                            asp-route-id="@p.id"
-                                          >
-                                            Ver comentarios</a>
-                                          |
+	<div class="wrapper">	
 
-                                          <a
-                                            type="button"
-                                            class="btn-sm btn-primary"
-                                            asp-controller="Comentarios"
-                                            asp-action="Create"
-                                            asp-route-id="@p.id"
-                                          >
-                                            Comentar</a>
-                                        </td>
-                                      </tr>
-                                      }
-                                    </tbody>
-                                  </table>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+		<main>
+			<div class="main-section">
+				<div class="container">
+					<div class="main-section-data">
+						<div class="row">
+							<div class="col-lg-3 col-md-4 pd-left-none no-pd">
+								<div class="main-left-sidebar no-margin">
+									<div class="user-data full-width">
+										<div class="user-profile">
+											<div class="username-dt">
+												<div class="usr-pic">
+													<img src="~/logoprofile.png" alt="">
+												</div>
+											</div><!--username-dt end-->
+											<div class="user-specs">
+												<h3>@Accessor.HttpContext.Session.GetString("_nombre")</h3>
+												<span>Graphic Designer at Self Employed</span>
+											</div>
+										</div><!--user-profile end-->
+										<ul class="user-fw-status">
+											<li>
+												<a href="my-profile.html" title="">Ver perfil</a>
+											</li>
+											<li>
+												<a href="my-profile.html" title="">Editar perfil</a>
+											</li>
+											<li>
+												<a href="my-profile.html" title="">Ver perfil</a>
+											</li>
+										</ul>
+									</div><!--user-data end-->
+									<div class="suggestions full-width">
+										<div class="sd-title">
+											<h3>Sugerencias de amigos</h3>
+										</div><!--sd-title end-->
+										
+										@foreach (Usuario u in usuarios) {
+											if(u.id != Accessor.HttpContext.Session.GetInt32("_id"))
+											{
+												@foreach (UsuarioAmigo ua in usuarioAmigos)
+												{
+													if(u.id != ua.idUser)
+													{
+														<div class="suggestions-list">
+															<div class="suggestion-usd">
+																<img src="~/logoprofile.png" alt="">
+																<div class="sgt-text">
+																	<h4>@u.nombre @u.apellido</h4>
+																</div>
+																<span><i class="la la-plus"></i></span>
+															</div>
+														</div><!--suggestions-list end-->
+													}
+												}
+											}			
+										}
+									</div><!--suggestions end-->
+									<div class="tags-sec full-width">
+										<ul>
+											<li><a href="#" title="">Help Center</a></li>
+											<li><a href="#" title="">About</a></li>
+											<li><a href="#" title="">Privacy Policy</a></li>
+											<li><a href="#" title="">Community Guidelines</a></li>
+											<li><a href="#" title="">Cookies Policy</a></li>
+											<li><a href="#" title="">Career</a></li>
+											<li><a href="#" title="">Language</a></li>
+											<li><a href="#" title="">Copyright Policy</a></li>
+										</ul>
+										<div class="cp-sec">
+											<img src="images/logo2.png" alt="">
+											<p><img src="images/cp.png" alt="">Copyright 2019</p>
+										</div>
+									</div><!--tags-sec end-->
+								</div><!--main-left-sidebar end-->
+							</div>
 
-                  @*Inicio car Comentarios*@
-                  <div class="row">
-                    <div class="col-md-12">
-                      <div class="card">
-                        <div class="card-body">
-                          <div class="row">
-                            <div class="col-md-8">
-                              <h3 class="card-title">
-                                <i class="fas fa-chart-pie mr-1"></i>
-                                Comentarios
-                              </h3>
-                            </div>
-                            <div class="card-body">
-                              <div
-                                class="direct-chat-messages overflow-y: overflow-scroll"
-                              >
-                                <div
-                                  class="chart tab-pane active"
-                                  style="position: relative; height: 300px"
-                                ></div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+							
+								<div class="col-lg-6 col-md-8 no-pd">
+								<div class="main-ws-sec">
+									<div class="post-topbar">
+										<div class="post-st">
+											<ul>
+												<li><a class="post-jb active" href="#" title="">Publicar</a></li>
+											</ul>
+										</div><!--post-st end-->
+									</div><!--post-topbar end-->
 
-                  <section class="col-lg-7 connectedSortable ui-sortable">
-                    <div class="card">
-                      <div
-                        class="card-header ui-sortable-handle"
-                        style="cursor: move"
-                      >
-                        <h3 class="card-title">
-                          <i class="fas fa-chart-pie mr-1"></i>
-                          Amigos
-                        </h3>
-                      </div>
-                      <div class="card-body">
-                        <div class="tab-content p-0">
-                          <div
-                            class="chart tab-pane active"
-                            id="revenue-chart"
-                            style="position: relative; height: 300px"
-                          >
-                            <table class="table">
-                              <thead>
-                                <tr>
-                                  <th></th>
+									
+										<div class="posts-section">
+										<div class="posty">
+											@foreach (Post p in post)
+											{
+												<div class="post-bar no-margin">
+												<div class="post_topbar">
+													<div class="usy-dt">
+														<div class="usy-name">
+															<h3>@p.user.nombre @p.user.apellido</h3>
+														</div>
+													</div>
+												</div>
+												<div class="job_descp">
+													<p>@p.contenido</p>
+													<ul class="skill-tags">
+																										<!-- Listado de Tags-->
+														<li><a href="#" title="">HTML</a></li>
+														<li><a href="#" title="">PHP</a></li>
+														<li><a href="#" title="">CSS</a></li>
+														<li><a href="#" title="">Javascript</a></li>
+														<li><a href="#" title="">Wordpress</a></li> 	
+													</ul>
+												</div>
+												<div class="job-status-bar">
+																										<!-- Listado de reacciones-->
+													<ul class="like-com">
+														<li>
+															<a href="#"><i class="fas fa-heart"></i> Like</a>
+															<img src="images/liked-img.png" alt="">
+														</li>
+													</ul>
+												</div>
+											</div><!--post-bar end-->
+											<div class="comment-section">
+												<div class="comment-sec">
+													<ul>
+														<li>
+															<div class="comment-list">
+																<div class="comment">
+																	<h3>John Doe</h3>
+																	<span><img src="images/clock.png" alt=""> 3 min ago</span>
+																	<p>Lorem ipsum dolor sit amet, </p>
+																	<a href="#" title="" class="active"><i class="fa fa-reply-all"></i>Reply</a>
+																</div>
+															</div><!--comment-list end-->
+														</li>
+												</div><!--comment-sec end-->
+												<div class="post-comment">
+													<div class="comment_box">
+														<form>
+															<input type="text" placeholder="Comenta">
+															<button type="submit">Send</button>
+														</form>
+													</div>
+												</div><!--post-comment end-->
+											</div><!--comment-section end-->
+											}
 
-                                  <th></th>
-                                </tr>
-                              </thead>
-                              <tbody>
-                                @foreach (Usuario u in usuarios) {
-                                    if(u.id != Accessor.HttpContext.Session.GetInt32("_id") )
-                                    {
-                                        @foreach (UsuarioAmigo ua in usuarioAmigos) {
-                                            if(u.id != ua.idUser )
-                                            {
-                                                <tr>
-                                                  <td>@u.nombre @u.apellido</td>
-                                                  <td>
-                                                    <a
-                                                      type="button"
-                                                      class="btn btn-primary"
-                                                      asp-controller="Usuarios"
-                                                      asp-action="Details"
-                                                      asp-route-id="@u.id"
-                                                    >
-                                                      Agregar
-                                                    </a>
-                                                  </td>
-                                                </tr>
-                                            }
-                                        }
-                                    }
-                                }
-                              </tbody>
-                            </table>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </section>
-                  <section class="col-lg-5 connectedSortable ui-sortable">
-                    <div
-                      class="card"
-                      style="position: relative; left: 0px; top: 0px"
-                    >
-                      <div
-                        class="card-header ui-sortable-handle"
-                        style="cursor: move"
-                      >
-                        <h3 class="card-title">
-                          <i class="fas fa-chart-pie mr-1"></i>
-                          Listado de amigos
-                        </h3>
-                      </div>
-                      <div class="card-body">
-                        <div class="tab-content p-0">
-                          <div
-                            class="chart tab-pane active"
-                            id="revenue-chart"
-                            style="position: relative; height: 300px"
-                          >
-                            
-                          <table class="table">
-                              <thead>
-                                <tr>
-                                  <th></th>
+										</div><!--posty end-->
+										
+									</div><!--posts-section end-->
+									
 
-                                  <th></th>
-                                </tr>
-                              </thead>
-                              <tbody>
-                                @foreach (UsuarioAmigo ua in usuarioAmigos) {
-                                    <tr>
-                                      <td>@ua.amigo.nombre @ua.amigo.apellido</td>
-                                      <td>
-                                        <a
-                                          type="button"
-                                          class="btn btn-danger"
-                                          asp-controller="Usuarios"
-                                          asp-action="Details"
-                                          asp-route-id=""
-                                        >
-                                          Eliminar
-                                        </a>
-                                      </td>
-                                    </tr>
-                                  
-                                }
-                              </tbody>
-                            </table>
+                                      
+                                      
+									
+								</div><!--main-ws-sec end-->
+							</div>
+							
+							
+							<div class="col-lg-3 pd-right-none no-pd">
+								<div class="right-sidebar">
+									<div class="widget suggestions full-width">
+										<div class="sd-title">
+											<h3>Most Viewed People</h3>
+											<i class="la la-ellipsis-v"></i>
+										</div><!--sd-title end-->
+										<div class="suggestions-list">
+											<div class="suggestion-usd">
+												<img src="images/resources/s1.png" alt="">
+												<div class="sgt-text">
+													<h4>Jessica William</h4>
+													<span>Graphic Designer</span>
+												</div>
+												<span><i class="la la-plus"></i></span>
+											</div>
+											<div class="view-more">
+												<a href="#" title="">View More</a>
+											</div>
+										</div><!--suggestions-list end-->
+									</div>
+								</div><!--right-sidebar end-->
+							</div>
+						</div>
+						
+					</div><!-- main-section-data end-->
+				</div> 
+			</div>
+		</main>
 
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </section>
 
-                  <section class="col-lg-15 connectedSortable ui-sortable">
-                    <div class="card">
-                      <div
-                        class="card-header ui-sortable-handle"
-                        style="cursor: move"
-                      >
-                        <h3 class="card-title">
-                          <i class="fas fa-chart-pie mr-1"></i>
-                          Busqueda
-                        </h3>
-                      </div>
-                      <div class="card-body">
-                        <div class="tab-content p-0">
-                          <div
-                            class="chart tab-pane active"
-                            id="revenue-chart"
-                            style="position: relative; height: 300px"
-                          >
-                            <div class="chartjs-size-monitor">
-                              <div class="chartjs-size-monitor-expand">
-                                <div class=""></div>
-                              </div>
-                              <div class="chartjs-size-monitor-shrink">
-                                <div class=""></div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </section>
-                </div>
-              </div>
-            </div>
-          </section>
+
+		<div class="post-popup job_post">
+			<div class="post-project">
+				<h3>Post a job</h3>
+				<div class="post-project-fields">
+					<form>
+						<div class="row">
+							<div class="col-lg-12">
+								<textarea name="contenido" placeholder="Contenido"></textarea>
+							</div>
+							<div class="col-lg-12">
+								<input type="text" name="tags" placeholder="Tags">
+							</div>
+							<div class="col-lg-12">
+								<ul>
+									<li><button class="active" type="submit" value="post">Postea</button></li>
+									<li><a href="#" title="">Cancelar</a></li>
+								</ul>
+							</div>
+						</div>
+					</form>
+				</div><!--post-project-fields end-->
+				<a href="#" title=""><i class="la la-times-circle-o"></i></a>
+			</div><!--post-project end-->
+		</div><!--post-project-popup end-->
+	</div><!--theme-layout end-->
+
+</body>
