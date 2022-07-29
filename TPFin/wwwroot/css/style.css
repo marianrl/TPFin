@@ -883,7 +883,6 @@ main {
 	width: 30px;
 	height: 30px;
 	border-radius: 3px;
-	border: 1px solid #e5e5e5;
 	text-align: center;	
 	line-height: 30px;
 	font-weight: 700;
@@ -1390,7 +1389,6 @@ main {
 .top-profiles {
 	float: left;
 	width: 100%;
-	border: 1px solid #e5e5e5;
 	margin-bottom: 20px;
 }
 .pf-hd {

@@ -2,6 +2,7 @@
 @inject Microsoft.AspNetCore.Http.IHttpContextAccessor Accessor
 
 
+
 @{ ViewData["Title"] = "Home"; 
     IEnumerable<Post> post = ViewData["Posts"] as IEnumerable<Post>; 
     IEnumerable<Usuario> usuarios = ViewData["Usuario"] as IEnumerable<Usuario>;
@@ -71,7 +72,7 @@
 																<div class="sgt-text">
 																	<h4>@u.nombre @u.apellido</h4>
 																</div>
-																<span><i class="la la-plus"></i></span>
+																<span><i class="bi bi-person-plus-fill"></i></span>
 															</div>
 														</div><!--suggestions-list end-->
 													}
@@ -104,12 +105,12 @@
 									<div class="post-topbar">
 										<div class="post-st">
 											<ul>
+												<li><a class="post_project" href="#" title="">Buscar</a></li>
 												<li><a class="post-jb active" href="#" title="">Publicar</a></li>
 											</ul>
 										</div><!--post-st end-->
 									</div><!--post-topbar end-->
 
-									
 										<div class="posts-section">
 										<div class="posty">
 											@foreach (Post p in post)
@@ -137,8 +138,10 @@
 																										<!-- Listado de reacciones-->
 													<ul class="like-com">
 														<li>
-															<a href="#"><i class="fas fa-heart"></i> Like</a>
-															<img src="images/liked-img.png" alt="">
+															<a href="#"><i class="bi bi-person-heart"></i> Like</a>
+														</li>
+														<li>
+															<a href="#"><i class="bi bi-person-dash-fill"></i>Don't Like</a>
 														</li>
 													</ul>
 												</div>
@@ -152,7 +155,6 @@
 																	<h3>John Doe</h3>
 																	<span><img src="images/clock.png" alt=""> 3 min ago</span>
 																	<p>Lorem ipsum dolor sit amet, </p>
-																	<a href="#" title="" class="active"><i class="fa fa-reply-all"></i>Reply</a>
 																</div>
 															</div><!--comment-list end-->
 														</li>
@@ -171,30 +173,23 @@
 										</div><!--posty end-->
 										
 									</div><!--posts-section end-->
-									
 
-                                      
-                                      
-									
 								</div><!--main-ws-sec end-->
 							</div>
-							
-							
 							<div class="col-lg-3 pd-right-none no-pd">
 								<div class="right-sidebar">
 									<div class="widget suggestions full-width">
 										<div class="sd-title">
-											<h3>Most Viewed People</h3>
-											<i class="la la-ellipsis-v"></i>
+											<h3 >Mis amigos </h3>
+											<span><i class="bi bi-heart-fill"></i></span>
 										</div><!--sd-title end-->
 										<div class="suggestions-list">
 											<div class="suggestion-usd">
-												<img src="images/resources/s1.png" alt="">
 												<div class="sgt-text">
 													<h4>Jessica William</h4>
-													<span>Graphic Designer</span>
+													
 												</div>
-												<span><i class="la la-plus"></i></span>
+												<span><i class="bi bi-x-circle"></i></span>
 											</div>
 											<div class="view-more">
 												<a href="#" title="">View More</a>
@@ -209,8 +204,6 @@
 				</div> 
 			</div>
 		</main>
-
-
 
 		<div class="post-popup job_post">
 			<div class="post-project">
@@ -233,9 +226,46 @@
 						</div>
 					</form>
 				</div><!--post-project-fields end-->
-				<a href="#" title=""><i class="la la-times-circle-o"></i></a>
+				<a href="#" title=""><i class="bi bi-x-circle"></i></a>
 			</div><!--post-project end-->
 		</div><!--post-project-popup end-->
+
+		<!--Busqueda-->
+
+				<div class="post-popup pst-pj">
+			<div class="post-project">
+				<h3>Busqueda</h3>
+				<div class="post-project-fields">
+					<form>
+						<div class="row">
+							<div class="col-lg-12">
+								<input type="text" name="contenido" placeholder="Contenido">
+							</div>
+							<div class="col-lg-12">
+								<input type="text" name="tags" placeholder="Tags">
+							</div>
+							<div class="col-lg-12">
+								<input type="date" name="fecha" placeholder="Fecha">
+							</div>
+							<div class="col-lg-12">
+								<textarea name="text" placeholder="Description"></textarea>
+							</div>
+							<div class="col-lg-12">
+								<ul>
+									<li><button class="active" type="submit" value="post">Buscar</button></li>
+									<li><a href="#" title="">Cancelar</a></li>
+								</ul>
+							</div>
+						</div>
+					</form>
+				</div><!--post-project-fields end-->
+				<a href="#" title=""><i class="bi bi-x-circle"></i></a>
+			</div><!--post-project end-->
+		</div><!--post-project-popup end-->
+
+
+
+
 	</div><!--theme-layout end-->
 
 </body>
