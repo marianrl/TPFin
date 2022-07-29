@@ -12,8 +12,8 @@ using TPFin.Data;
 namespace TPFin.Migrations
 {
     [DbContext(typeof(MyContext))]
-    [Migration("20220726010158_initial")]
-    partial class initial
+    [Migration("20220728223657_inicial")]
+    partial class inicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -58,7 +58,7 @@ namespace TPFin.Migrations
                         {
                             id = 1,
                             contenido = "Argentina",
-                            fecha = new DateTime(2022, 7, 25, 22, 1, 58, 592, DateTimeKind.Local).AddTicks(9482),
+                            fecha = new DateTime(2022, 7, 28, 19, 36, 57, 742, DateTimeKind.Local).AddTicks(4624),
                             idPost = 1,
                             idUser = 1
                         },
@@ -66,7 +66,7 @@ namespace TPFin.Migrations
                         {
                             id = 2,
                             contenido = "Argentina",
-                            fecha = new DateTime(2022, 7, 25, 22, 1, 58, 592, DateTimeKind.Local).AddTicks(9498),
+                            fecha = new DateTime(2022, 7, 28, 19, 36, 57, 742, DateTimeKind.Local).AddTicks(4633),
                             idPost = 2,
                             idUser = 2
                         },
@@ -74,31 +74,10 @@ namespace TPFin.Migrations
                         {
                             id = 3,
                             contenido = "Argentina",
-                            fecha = new DateTime(2022, 7, 25, 22, 1, 58, 592, DateTimeKind.Local).AddTicks(9510),
+                            fecha = new DateTime(2022, 7, 28, 19, 36, 57, 742, DateTimeKind.Local).AddTicks(4639),
                             idPost = 3,
                             idUser = 3
                         });
-                });
-
-            modelBuilder.Entity("TPFin.Models.Login", b =>
-                {
-                    b.Property<int>("id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"), 1L, 1);
-
-                    b.Property<string>("password")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("user")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("id");
-
-                    b.ToTable("Login", (string)null);
                 });
 
             modelBuilder.Entity("TPFin.Models.Post", b =>
@@ -130,21 +109,21 @@ namespace TPFin.Migrations
                         {
                             id = 1,
                             contenido = "Como estan?",
-                            fecha = new DateTime(2022, 7, 25, 22, 1, 58, 592, DateTimeKind.Local).AddTicks(9434),
+                            fecha = new DateTime(2022, 7, 28, 19, 36, 57, 742, DateTimeKind.Local).AddTicks(4590),
                             idUser = 1
                         },
                         new
                         {
                             id = 2,
                             contenido = "Todo bien por suerte",
-                            fecha = new DateTime(2022, 7, 25, 22, 1, 58, 592, DateTimeKind.Local).AddTicks(9458),
+                            fecha = new DateTime(2022, 7, 28, 19, 36, 57, 742, DateTimeKind.Local).AddTicks(4609),
                             idUser = 2
                         },
                         new
                         {
                             id = 3,
                             contenido = "Hola",
-                            fecha = new DateTime(2022, 7, 25, 22, 1, 58, 592, DateTimeKind.Local).AddTicks(9471),
+                            fecha = new DateTime(2022, 7, 28, 19, 36, 57, 742, DateTimeKind.Local).AddTicks(4615),
                             idUser = 3
                         });
                 });
