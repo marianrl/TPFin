@@ -20,5 +20,11 @@ namespace TPFin.Models
             user = ppal;
             amigo = segundo;
         }
+
+        public UsuarioAmigo(int ppal, int segundo)
+        {
+            idUser = ppal;
+            idAmigo = segundo;
+        }
     }
 }

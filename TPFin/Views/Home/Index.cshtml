@@ -1,9 +1,12 @@
-@using TPFin.Controllers 
+@using TPFin.Controllers
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor Accessor
 
 
 @{ ViewData["Title"] = "Home"; 
     IEnumerable<Post> post = ViewData["Posts"] as IEnumerable<Post>; 
-    IEnumerable<Usuario> usuarios = ViewData["Usuario"] as IEnumerable<Usuario>; 
+    IEnumerable<Usuario> usuarios = ViewData["Usuario"] as IEnumerable<Usuario>;
+    IEnumerable<UsuarioAmigo> usuarioAmigos = ViewData["Amigos"] as IEnumerable<UsuarioAmigo>;
+    
 }
 
         <div class="content-wrapper" style="min-height: 511px">
@@ -11,7 +14,7 @@
             <div class="container-fluid">
               <div class="row mb-2">
                 <div class="col-sm-6">
-                  <h1 class="m-0">Usuario</h1>
+                  <h1 class="m-0">Bienvenido, @Accessor.HttpContext.Session.GetString("_nombre") </h1>
                 </div>
               </div>
             </div>
@@ -48,21 +51,21 @@
                             <span class="input-group-append">
                               <a
                                 type="button"
-                                class="btn btn-info btn-flat"
+                                class="btn btn-info btn-flat mr-3 mb-3"
                                 asp-controller="Usuarios"
                                 asp-action="Details"
-                                asp-route-id="1"
+                                asp-route-id="@Accessor.HttpContext.Session.GetInt32("_id")"
                                 >Ver Usuario</a>
                               <a
                                 type="button"
-                                class="btn btn-warning"
-                                asp-controller=""
-                                asp-action=""
-                                asp-route-id="1"
+                                class="btn btn-warning  mb-3 "
+                                asp-controller="Usuarios"
+                                asp-action="Edit"
+                                asp-route-id="@Accessor.HttpContext.Session.GetInt32("_id")"
                                 >Modificar Usuario</a>
                               <a
                                 type="button"
-                                class="btn btn-danger"
+                                class="btn btn-danger mb-3" 
                                 asp-controller=""
                                 asp-action=""
                                 asp-route-id="1"
@@ -131,6 +134,16 @@
                                             asp-route-id="@p.id"
                                           >
                                             Eliminar</a>
+                                          |
+
+                                          <a
+                                            type="button"
+                                            class="btn-sm btn-info"
+                                            asp-controller=""
+                                            asp-action=""
+                                            asp-route-id="@p.id"
+                                          >
+                                            Ver comentarios</a>
                                           |
 
                                           <a
@@ -211,20 +224,28 @@
                               </thead>
                               <tbody>
                                 @foreach (Usuario u in usuarios) {
-                                <tr>
-                                  <td>@u.nombre @u.apellido</td>
-                                  <td>
-                                    <a
-                                      type="button"
-                                      class="btn btn-primary"
-                                      asp-controller="Usuarios"
-                                      asp-action="Details"
-                                      asp-route-id="@u.id"
-                                    >
-                                      Agregar
-                                    </a>
-                                  </td>
-                                </tr>
+                                    if(u.id != Accessor.HttpContext.Session.GetInt32("_id") )
+                                    {
+                                        @foreach (UsuarioAmigo ua in usuarioAmigos) {
+                                            if(u.id != ua.idUser )
+                                            {
+                                                <tr>
+                                                  <td>@u.nombre @u.apellido</td>
+                                                  <td>
+                                                    <a
+                                                      type="button"
+                                                      class="btn btn-primary"
+                                                      asp-controller="Usuarios"
+                                                      asp-action="Details"
+                                                      asp-route-id="@u.id"
+                                                    >
+                                                      Agregar
+                                                    </a>
+                                                  </td>
+                                                </tr>
+                                            }
+                                        }
+                                    }
                                 }
                               </tbody>
                             </table>
@@ -255,6 +276,35 @@
                             style="position: relative; height: 300px"
                           >
                             
+                          <table class="table">
+                              <thead>
+                                <tr>
+                                  <th></th>
+
+                                  <th></th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                @foreach (UsuarioAmigo ua in usuarioAmigos) {
+                                    <tr>
+                                      <td>@ua.amigo.nombre @ua.amigo.apellido</td>
+                                      <td>
+                                        <a
+                                          type="button"
+                                          class="btn btn-danger"
+                                          asp-controller="Usuarios"
+                                          asp-action="Details"
+                                          asp-route-id=""
+                                        >
+                                          Eliminar
+                                        </a>
+                                      </td>
+                                    </tr>
+                                  
+                                }
+                              </tbody>
+                            </table>
+
                           </div>
                         </div>
                       </div>

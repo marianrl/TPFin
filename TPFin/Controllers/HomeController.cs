@@ -20,15 +20,13 @@ namespace TPFin.Controllers
             var postContext = _context.post.Include(p => p.user);
             var usuariosContext = _context.usuarios;
             var userId = HttpContext.Session.GetInt32("_id");
+            var amigosContext = _context.UsuarioAmigo;
+            HttpContext.Session.GetString("_nombre");
             ViewData["Posts"] = postContext.ToList();
             _ = usuariosContext != null ?
                 ViewData["Usuario"] = usuariosContext.ToList() :
                 ViewData["Usuario"] = Enumerable.Empty<string>();
-            return View();
-        }
-
-        public IActionResult Privacy()
-        {
+            ViewData["Amigos"] = amigosContext.ToList();
             return View();
         }
 
@@ -37,8 +35,5 @@ namespace TPFin.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
-        
-        
-
     }
 }

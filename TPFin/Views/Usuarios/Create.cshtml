@@ -2,6 +2,13 @@
 
 @{
     ViewData["Title"] = "Create";
+
+    if(null != TempData["MessagemailExiste"])
+   {
+      <script type="text/javascript">
+       alert('@TempData["MessagemailExiste"]');
+      </script>
+   }    
 }
 
 <h1>Create</h1>
@@ -43,14 +50,22 @@
                 </label>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Registrar" class="btn btn-primary"/>
             </div>
+
+            
+
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a
+       type="button"
+       class="btn btn-warning mt-3"
+       asp-controller="Login"
+       asp-action="Index"
+     >Volver a inicio</a>
 </div>
 
 @section Scripts {

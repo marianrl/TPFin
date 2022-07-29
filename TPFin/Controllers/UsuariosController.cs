@@ -57,9 +57,19 @@ namespace TPFin.Models
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("id,dni,nombre,apellido,email,password,intentosFallidos,bloqueado,isAdm")] Usuario usuario)
         {
-            _context.Add(usuario);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            int mailExiste = _context.usuarios.Where(x => x.email == usuario.email).Count();
+            if (mailExiste > 0)
+            {
+                TempData["MessagemailExiste"] = "Mail ya registrado, intente con otro";
+                return RedirectToAction(nameof(Create));
+            }
+            else
+            {
+                _context.Add(usuario);
+                await _context.SaveChangesAsync();
+                TempData["MessageLoger"] = "Usuario registrado";
+                return RedirectToAction(nameof(Index), "Login");
+            }
         }
 
         // GET: Usuarios/Edit/5
@@ -92,6 +102,14 @@ namespace TPFin.Models
 
             try
             {
+                var admin = HttpContext.Session.GetString("_admin");
+                var intFal = HttpContext.Session.GetInt32("_intfall");
+                var block = HttpContext.Session.GetString("_block");
+
+                _ = admin == "true" ? usuario.isAdm = true : usuario.isAdm = false;
+                _ = intFal == 0 ? usuario.intentosFallidos = 0 : usuario.intentosFallidos = 1;
+                _ = block == "true" ? usuario.bloqueado = true : usuario.bloqueado = false;
+
                 _context.Update(usuario);
                 await _context.SaveChangesAsync();
             }
@@ -106,7 +124,7 @@ namespace TPFin.Models
                     throw;
                 }
             }
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(Index), "Home");
         }
 
         // GET: Usuarios/Delete/5

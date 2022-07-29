@@ -4,7 +4,7 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<h1>Detalle del usuario</h1>
 
 <div>
     <h4>Usuario</h4>
@@ -40,27 +40,19 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.password)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.intentosFallidos)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.intentosFallidos)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.bloqueado)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.bloqueado)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.isAdm)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.isAdm)
-        </dd>
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a 
+       type="button"
+       class="btn btn-primary mt-3"
+       asp-action="Edit" 
+       asp-route-id="@Model?.id">Editar</a> 
+
+     <a
+       type="button"
+       class="btn btn-warning mt-3"
+       asp-controller="Home"
+       asp-action="Index"
+     >Volver a inicio</a>
 </div>
