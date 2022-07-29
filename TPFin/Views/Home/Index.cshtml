@@ -37,13 +37,19 @@
 										</div><!--user-profile end-->
 										<ul class="user-fw-status">
 											<li>
-												<a href="my-profile.html" title="">Ver perfil</a>
+												<a asp-controller="Usuarios"
+													asp-action="Details"
+													asp-route-id="@Accessor.HttpContext.Session.GetInt32("_id")">
+													Ver perfil</a>
 											</li>
 											<li>
-												<a href="my-profile.html" title="">Editar perfil</a>
+												<a asp-controller="Usuarios"
+													asp-action="Edit"
+													asp-route-id="@Accessor.HttpContext.Session.GetInt32("_id")">
+													Editar perfil</a>
 											</li>
 											<li>
-												<a href="my-profile.html" title="">Ver perfil</a>
+												<a href="my-profile.html" title="">Cerrar Sesión</a>
 											</li>
 										</ul>
 									</div><!--user-data end-->

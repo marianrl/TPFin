@@ -11,63 +11,93 @@
    }    
 }
 
-<h1>Create</h1>
-
-<h4>Usuario</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
+<body class="sign-in">
+    <div class="wrapper">
+      <div class="sign-in-page">
+        <div class="signin-popup">
+          <div class="signin-pop">
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="cmp-info">
+                  <div class="cm-logo">
+                    <img src="~/Logo.png" alt="" />
+                    <p>
+                        Red social Could es un red social para hacer nuevos amigos. Regístrate o iniciar sesión para comenzar una nueva aventura
+                    </p>
+                  </div>
+                  <!--cm-logo end-->
+                  <img src="images/cm-main-img.png" alt="" />
+                </div>
+                <!--cmp-info end-->
+              </div>
+              <div class="col-lg-6">
+                <div class="login-sec">
+                  <div class="sign_in_sec current" id="tab-1">
+                    <h3>Registrate</h3>
+                    <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="dni" class="control-label"></label>
-                <input asp-for="dni" class="form-control" />
+                <input asp-for="dni" class="form-control mt-3" />
                 <span asp-validation-for="dni" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="nombre" class="control-label"></label>
-                <input asp-for="nombre" class="form-control" />
+                <input asp-for="nombre" class="form-control mt-3" />
                 <span asp-validation-for="nombre" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="apellido" class="control-label"></label>
-                <input asp-for="apellido" class="form-control" />
+                <input asp-for="apellido" class="form-control mt-3" />
                 <span asp-validation-for="apellido" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="email" class="control-label"></label>
-                <input asp-for="email" class="form-control" />
+                <input asp-for="email" class="form-control mt-3" />
                 <span asp-validation-for="email" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="password" class="control-label"></label>
-                <input asp-for="password" class="form-control" />
+                <input asp-for="password" class="form-control mt-3" />
                 <span asp-validation-for="password" class="text-danger"></span>
             </div>
             <div class="form-group form-check">
                 <label class="form-check-label">
-                    <input class="form-check-input" asp-for="isAdm" /> @Html.DisplayNameFor(model => model.isAdm)
+                    <input class="radio" asp-for="isAdm" /> @Html.DisplayNameFor(model => model.isAdm)
                 </label>
             </div>
             <div class="form-group">
-                <input type="submit" value="Registrar" class="btn btn-primary"/>
+                <input type="submit" value="Registrate" class="btn btn-primary mt-3"/>
+                <a
+                   type="button"
+                   class="btn btn-warning mt-3"
+                   asp-controller="Login"
+                   asp-action="Index"
+                 >Cancelar</a>
             </div>
 
             
 
         </form>
+                    <!--login-resources end-->
+                  </div>
+                  <!--sign_in_sec end-->
+                </div>
+                <!--login-sec end-->
+              </div>
+            </div>
+          </div>
+          <!--signin-pop end-->
+        </div>
+        <!--signin-popup end-->
+      </div>
+      <!--sign-in-page end-->
     </div>
-</div>
+    <!--theme-layout end-->
 
-<div>
-    <a
-       type="button"
-       class="btn btn-warning mt-3"
-       asp-controller="Login"
-       asp-action="Index"
-     >Volver a inicio</a>
-</div>
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/popper.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="lib/slick/slick.min.js"></script>
+    <script type="text/javascript" src="js/script.js"></script>
+  </body>
