@@ -30,6 +30,17 @@ namespace TPFin.Controllers
             return View();
         }
 
+        public IActionResult CerrarSesion()
+        {
+            HttpContext.Session.Remove("_id");
+            HttpContext.Session.Remove("_nombre");
+            HttpContext.Session.Remove("_admin");
+            HttpContext.Session.Remove("_block");
+            HttpContext.Session.Remove("_email");
+
+            return RedirectToAction("Index", "Login");
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
