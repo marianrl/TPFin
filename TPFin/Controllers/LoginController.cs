@@ -13,6 +13,7 @@ namespace TPFin.Controllers
         public const string SessionAdminKey = "_admin";
         public const string SessionBlockKey = "_block";
         public const string SessionEmailKey = "_email";
+        public const string SessionPasswordKey = "_password";
         public IActionResult Index()
         {
             return View();
@@ -31,43 +32,32 @@ namespace TPFin.Controllers
 
                 if (user != null)
                 {
-                    int[] userId = (from Usuario in db.usuarios
-                              where Usuario.email == usuario.email && Usuario.password == usuario.password
-                              select Usuario.id).ToArray();
-                    string[] userName = (from Usuario in db.usuarios
-                                        where Usuario.email == usuario.email && Usuario.password == usuario.password
-                                        select Usuario.nombre).ToArray();
-                    string[] userApe = (from Usuario in db.usuarios
-                                        where Usuario.email == usuario.email && Usuario.password == usuario.password
-                                        select Usuario.apellido).ToArray();
-                    bool[] userAdmin = (from Usuario in db.usuarios
-                                        where Usuario.email == usuario.email && Usuario.password == usuario.password
-                                        select Usuario.isAdm).ToArray();
-                    bool[] userBlock = (from Usuario in db.usuarios
-                                        where Usuario.email == usuario.email && Usuario.password == usuario.password
-                                        select Usuario.bloqueado).ToArray();
-                    int[] userIntFal = (from Usuario in db.usuarios
-                                        where Usuario.email == usuario.email && Usuario.password == usuario.password
-                                        select Usuario.intentosFallidos).ToArray();
+                    IEnumerable<Usuario> userList = db.usuarios.Where(x => x.email == usuario.email && x.password == usuario.password);
 
-                    if (!userBlock[0])
+                    string email = userList.First().email;
+                    string password = userList.First().password;
+                    int idUser = userList.First().id;
+                    string nombre = userList.First().nombre;
+                    string apellido = userList.First().apellido;
+                    bool isAdmin = userList.First().isAdm;
+                    bool block = userList.First().bloqueado;
+                    int intFallidos = userList.First().intentosFallidos;
+
+                    if (!block)
                     {
-                        if (userId != null && userId.ToString() != null && userAdmin.ToString() != null)
-                        {
-                            HttpContext.Session.SetInt32(SessionIdKey, userId[0]);
-                            HttpContext.Session.SetString(SessionAdminKey, userAdmin[0].ToString());
-                            HttpContext.Session.SetString(SessionNyaKey, userName[0] + " " + userApe[0]);
-                            HttpContext.Session.SetString(SessionBlockKey, userBlock[0].ToString());
-                            HttpContext.Session.SetInt32(SessionBlockKey, userIntFal[0]);
+                        HttpContext.Session.SetInt32(SessionIdKey, idUser);
+                        HttpContext.Session.SetString(SessionAdminKey, isAdmin.ToString());
+                        HttpContext.Session.SetString(SessionNyaKey, nombre + " " + apellido);
+                        HttpContext.Session.SetString(SessionBlockKey, block.ToString());
+                        HttpContext.Session.SetInt32(SessionBlockKey, intFallidos);
+                        HttpContext.Session.SetString(SessionPasswordKey, password);
 
-                        }
                         return RedirectToAction("Index", "Home");
                     }
                     else
                     {
                         TempData["Message"] = "Usuario bloqueado, contacte al administrador";
                         return View();
-                        
                     }
                 }
                 else

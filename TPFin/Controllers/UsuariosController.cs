@@ -81,6 +81,8 @@ namespace TPFin.Models
             }
 
             var usuario = await _context.usuarios.FindAsync(id);
+            usuario.password = "";
+
             if (usuario == null)
             {
                 return NotFound();
@@ -93,7 +95,7 @@ namespace TPFin.Models
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("id,dni,nombre,apellido,email,password,intentosFallidos,bloqueado,isAdm")] Usuario usuario)
+        public async Task<IActionResult> Edit(int id, [Bind("id,dni,nombre,apellido,email,password,intentosFallidos,bloqueado,isAdm")] Usuario usuario, string current, string newP)
         {
             if (id != usuario.id)
             {
@@ -110,8 +112,26 @@ namespace TPFin.Models
                 _ = intFal == 0 ? usuario.intentosFallidos = 0 : usuario.intentosFallidos = 1;
                 _ = block == "true" ? usuario.bloqueado = true : usuario.bloqueado = false;
 
-                _context.Update(usuario);
-                await _context.SaveChangesAsync();
+                if(HttpContext.Session.GetString("_password") == current)
+                {
+                    if(newP == usuario.password)
+                    {
+                        _context.Update(usuario);
+                        await _context.SaveChangesAsync();
+                        TempData["Message"] = "Usuario modificado correctamente";
+                        return RedirectToAction(nameof(Index), "Home");
+                    }
+                    else
+                    {
+                        TempData["Message"] = "La nueva password no coincide";
+                        return RedirectToAction(nameof(Edit));
+                    }
+                }
+                else
+                {
+                    TempData["Message"] = "Password actual incorrecta";
+                    return RedirectToAction(nameof(Index), "Home");
+                }
             }
             catch (DbUpdateConcurrencyException)
             {

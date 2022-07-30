@@ -1,7 +1,15 @@
 ﻿@model TPFin.Models.Usuario
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor Accessor
 
 @{
     ViewData["Title"] = "Edit";
+
+    if(null != TempData["Message"])
+   {
+      <script type="text/javascript">
+       alert('@TempData["Message"]');
+      </script>
+   }
 }
 
 <h1>Editar Usuario</h1>
@@ -14,28 +22,38 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="id" />
             <div class="form-group">
-                <label asp-for="dni" class="control-label"></label>
+                <label asp-for="dni" class="control-label">Dni</label>
                 <input asp-for="dni" class="form-control" />
                 <span asp-validation-for="dni" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="nombre" class="control-label"></label>
+                <label asp-for="nombre" class="control-label">Nombre</label>
                 <input asp-for="nombre" class="form-control" />
                 <span asp-validation-for="nombre" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="apellido" class="control-label"></label>
+                <label asp-for="apellido" class="control-label">Apellido</label>
                 <input asp-for="apellido" class="form-control" />
                 <span asp-validation-for="apellido" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="email" class="control-label"></label>
+                <label asp-for="email" class="control-label">Email</label>
                 <input asp-for="email" class="form-control" />
                 <span asp-validation-for="email" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="password" class="control-label"></label>
-                <input asp-for="password" class="form-control" />
+                <label class="control-label">Current password</label>
+                <input name="current" class="form-control" />
+                <span asp-validation-for="password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">New password</label>
+                <input name="newP" class="form-control" />
+                <span asp-validation-for="password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="password" class="control-label">Repeat password</label>
+                <input asp-for="password" id="repeat" class="form-control"/>
                 <span asp-validation-for="password" class="text-danger"></span>
             </div>
             

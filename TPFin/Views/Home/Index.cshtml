@@ -1,12 +1,17 @@
 @using TPFin.Controllers
 @inject Microsoft.AspNetCore.Http.IHttpContextAccessor Accessor
 
-
-
 @{ ViewData["Title"] = "Home"; 
     IEnumerable<Post> post = ViewData["Posts"] as IEnumerable<Post>; 
     IEnumerable<Usuario> usuarios = ViewData["Usuario"] as IEnumerable<Usuario>;
     IEnumerable<UsuarioAmigo> usuarioAmigos = ViewData["Amigos"] as IEnumerable<UsuarioAmigo>;
+
+	if(null != TempData["Message"])
+   {
+      <script type="text/javascript">
+       alert('@TempData["Message"]');
+      </script>
+   }
     
 }
 
