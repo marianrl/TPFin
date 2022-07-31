@@ -122,5 +122,7 @@ namespace TPFin.Data
         }
 
         public DbSet<TPFin.Models.UsuarioAmigo>? UsuarioAmigo { get; set; }
+
+        public DbSet<TPFin.Models.PostsTags>? PostsTags { get; set; }
     }
 }

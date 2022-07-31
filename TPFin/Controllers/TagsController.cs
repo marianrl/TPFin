@@ -44,12 +44,6 @@ namespace TPFin.Models
             return View(tag);
         }
 
-        // GET: Tags/Create
-        public IActionResult Create()
-        {
-            return View();
-        }
-
         // POST: Tags/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -57,9 +51,23 @@ namespace TPFin.Models
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("id,palabra")] Tag tag)
         {
-            _context.Add(tag);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            if(tag == null)
+            {
+                string frase = TempData["tags"].ToString();
+                List<string> palabras = frase.Split(' ').ToList();
+                foreach(string a in palabras)
+                {
+                    if (a != _context.tags.Where(x => x.palabra == a).ToString())
+                    {
+                        tag.palabra = a;
+                        _context.Add(tag);                        
+                        await _context.SaveChangesAsync();
+                    }
+                }
+                IEnumerable<Tag> tags = _context.tags.Where(x => x.id == tag.id);
+                TempData["tags2"] = tags;
+            }
+            return RedirectToAction(nameof(Create),"PostsTags");
         }
 
         // GET: Tags/Edit/5

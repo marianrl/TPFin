@@ -59,11 +59,29 @@ namespace TPFin.Models
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("id,idUser,contenido,fecha")] Post post)
+        public async Task<IActionResult> Create([Bind("id,idUser,contenido,fecha")] Post post, string tags)
         {
-            _context.Add(post);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            var id = HttpContext.Session.GetInt32("_id");
+            DateTime fecha = DateTime.Now;
+            post.fecha = fecha;
+            if(id != null) { post.idUser = (int)id; }
+
+            if(tags != null)
+            {
+                _context.Add(post);
+                TempData["Tags"] = tags;
+                await _context.SaveChangesAsync();
+                TempData["idPost"] = post.id;
+                TempData["Message"] = "Post Creado";
+                return RedirectToAction("Create", "Tags");
+            }
+            else 
+            {
+                _context.Add(post);
+                await _context.SaveChangesAsync();
+                TempData["Message"] = "Post Creado";
+                return RedirectToAction(nameof(Index), "Home");
+            }
             ViewData["idUser"] = new SelectList(_context.usuarios, "id", "id", post.idUser);
         }
 
