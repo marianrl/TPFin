@@ -42,23 +42,34 @@ namespace TPFin.Controllers
                     bool isAdmin = userList.First().isAdm;
                     bool block = userList.First().bloqueado;
                     int intFallidos = userList.First().intentosFallidos;
+                    
 
-                    if (!block)
+                    if (!isAdmin)
                     {
-                        HttpContext.Session.SetInt32(SessionIdKey, idUser);
-                        HttpContext.Session.SetString(SessionAdminKey, isAdmin.ToString());
                         HttpContext.Session.SetString(SessionNyaKey, nombre + " " + apellido);
-                        HttpContext.Session.SetString(SessionBlockKey, block.ToString());
-                        HttpContext.Session.SetInt32(SessionBlockKey, intFallidos);
-                        HttpContext.Session.SetString(SessionPasswordKey, password);
-
-                        return RedirectToAction("Index", "Home");
+                        return RedirectToAction("IndexAdmin", "Home");
                     }
                     else
                     {
-                        TempData["Message"] = "Usuario bloqueado, contacte al administrador";
-                        return View();
+                        if (!block)
+                        {
+                            HttpContext.Session.SetInt32(SessionIdKey, idUser);
+                            HttpContext.Session.SetString(SessionAdminKey, isAdmin.ToString());
+                            HttpContext.Session.SetString(SessionNyaKey, nombre + " " + apellido);
+                            HttpContext.Session.SetString(SessionBlockKey, block.ToString());
+                            HttpContext.Session.SetInt32(SessionBlockKey, intFallidos);
+                            HttpContext.Session.SetString(SessionPasswordKey, password);
+
+                            return RedirectToAction("Index", "Home");
+                        }
+                        else
+                        {
+                            TempData["Message"] = "Usuario bloqueado, contacte al administrador";
+                            return View();
+                        }
                     }
+
+                    
                 }
                 else
                 {

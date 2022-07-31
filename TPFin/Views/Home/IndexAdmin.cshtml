@@ -1,0 +1,145 @@
+﻿@using TPFin.Controllers
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor Accessor
+
+@{ ViewData["Title"] = "HomeAdmin"; 
+
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="~/css/all.min.css"/>
+  <!-- Theme style -->
+  <link rel="stylesheet" href="~/css/adminlte.css" />
+</head>
+<body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+<div class="wrapper">
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-7">
+            <h1 class="m-0">Bienvenido Adminstrador @Accessor.HttpContext.Session.GetString("_nombre")</h1>
+            <a 
+                class="btn btn-danger btn-xs"
+                asp-controller="Home"
+			    asp-action="CerrarSesion">
+				Cerrar sesion</a>
+      </div>
+    </div>
+
+    <!-- Main content -->
+      <div class="container-fluid">
+        <!-- Info boxes -->
+        <div class="row">
+          <div class="col-12 col-sm-6 col-md-3">
+            <div class="info-box">
+              <span class="info-box-icon bg-warning elevation-1"><a class="bi bi-journal-bookmark-fill"
+                                                                     asp-controller="Posts"
+													                 asp-action="index"></a></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Posts</span>
+                <span class="info-box-number">
+                  10
+                  <small>%</small>
+                </span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+          <!-- /.col -->
+          <div class="col-12 col-sm-6 col-md-3">
+            <div class="info-box mb-3">
+              <span class="info-box-icon bg-primary elevation-1"><a class="bi bi-person-hearts"
+                                                                     asp-controller="Usuarios"
+													                 asp-action="index"></a></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Usuarios</span>
+                <span class="info-box-number">41,410</span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+          <!-- /.col -->
+          
+          <div class="col-12 col-sm-6 col-md-3">
+            <div class="info-box mb-3">
+              <span class="info-box-icon bg-success elevation-1"><a class="bi bi-hash"
+                                                                     asp-controller="Tags"
+													                 asp-action="index"></a></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Tags</span>
+                <span class="info-box-number">41,410</span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+
+
+          <!-- fix for small devices only -->
+          
+
+          <div class="col-12 col-sm-6 col-md-3">
+            <div class="info-box mb-3">
+              <span class="info-box-icon bg-info elevation-1"><i class="bi bi-hand-thumbs-up-fill"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Like</span>
+                <span class="info-box-number">760</span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+          <!-- /.col -->
+          <div class="col-12 col-sm-6 col-md-3">
+            <div class="info-box mb-3">
+              <span class="info-box-icon bg-danger elevation-1"><i class="bi bi-hand-thumbs-down-fill"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Don't Like</span>
+                <span class="info-box-number">2,000</span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+
+        <!-- Main row -->
+        </div>
+        <!-- /.row -->
+      </div><!--/. container-fluid -->
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
+
+  <!-- Main Footer -->
+
+</div>
+<!-- ./wrapper -->
+
+</body>
+</html>

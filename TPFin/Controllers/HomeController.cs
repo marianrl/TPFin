@@ -18,6 +18,7 @@ namespace TPFin.Controllers
         public IActionResult Index()
         {
             var postContext = _context.post.Include(p => p.user);
+            var postContextc = _context.post.Include(p => p.user);
             var usuariosContext = _context.usuarios;
             var userId = HttpContext.Session.GetInt32("_id");
             var amigosContext = _context.UsuarioAmigo;
@@ -27,6 +28,11 @@ namespace TPFin.Controllers
                 ViewData["Usuario"] = usuariosContext.ToList() :
                 ViewData["Usuario"] = Enumerable.Empty<string>();
             ViewData["Amigos"] = amigosContext.ToList();
+            return View();
+        }
+
+        public IActionResult IndexAdmin()
+        {
             return View();
         }
 
@@ -45,6 +51,7 @@ namespace TPFin.Controllers
         {
             TempData["_idUser"] = idUser;
             TempData["_idAmigo"] = idAmigo;
+
             return RedirectToAction("AgregarUsuarioAmigo", "UsuarioAmigo");
         }
 
