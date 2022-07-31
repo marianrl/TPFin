@@ -73,7 +73,9 @@ namespace TPFin.Models
                 await _context.SaveChangesAsync();
                 TempData["idPost"] = post.id;
                 TempData["Message"] = "Post Creado";
-                return RedirectToAction("Create", "Tags");
+                RedirectToAction("Create", "Tags");
+                return RedirectToAction(nameof(Index), "Home");
+
             }
             else 
             {
@@ -169,7 +171,7 @@ namespace TPFin.Models
             }
             
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(Index),"Home");
         }
 
         private bool PostExists(int id)

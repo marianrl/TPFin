@@ -58,14 +58,19 @@ namespace TPFin.Models
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("id,idPost,idUser,contenido,fecha")] Comentario comentario)
+        public async Task<IActionResult> Create([Bind("id,idPost,idUser,contenido,fecha")] Comentario comentario, int idp, int idu)
         {
+            DateTime fecha = DateTime.Now;
+            comentario.fecha = fecha;
+            comentario.idPost = idp;
+            comentario.idUser = idu;
             _context.Add(comentario);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            TempData["Message"] = "Comentario Realizado";
+            return RedirectToAction(nameof(Index), "Home");
 
-            ViewData["idPost"] = new SelectList(_context.post, "id", "id", comentario.idPost);
-            ViewData["idUser"] = new SelectList(_context.usuarios, "id", "id", comentario.idUser);
+
+
         }
 
         // GET: Comentarios/Edit/5
@@ -141,7 +146,7 @@ namespace TPFin.Models
         }
 
         // POST: Comentarios/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
@@ -150,13 +155,17 @@ namespace TPFin.Models
                 return Problem("Entity set 'MyContext.comentarios'  is null.");
             }
             var comentario = await _context.comentarios.FindAsync(id);
-            if (comentario != null)
+            if (comentario != null && comentario.idUser == HttpContext.Session.GetInt32("_id"))
             {
                 _context.comentarios.Remove(comentario);
+                await _context.SaveChangesAsync();
             }
-            
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            else
+            {
+                TempData["Message"] = "No puede eliminar Comentarios Ajenos";
+             
+            }
+            return RedirectToAction(nameof(Index), "Home");
         }
 
         private bool ComentarioExists(int id)

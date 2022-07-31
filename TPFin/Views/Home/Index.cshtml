@@ -5,6 +5,7 @@
     IEnumerable<Post> post = ViewData["Posts"] as IEnumerable<Post>; 
     IEnumerable<Usuario> usuarios = ViewData["Usuario"] as IEnumerable<Usuario>;
     IEnumerable<UsuarioAmigo> usuarioAmigos = ViewData["Amigos"] as IEnumerable<UsuarioAmigo>;
+	IEnumerable<Comentario> comentarios = ViewData["Comentario"] as IEnumerable<Comentario>;
 
 	if(null != TempData["Message"])
    {
@@ -182,20 +183,48 @@
 											<div class="comment-section">
 												<div class="comment-sec">
 													<ul>
-														<li>
-															<div class="comment-list">
-																<div class="comment">
-																	<h3>John Doe</h3>
-																	<span><img src="images/clock.png" alt=""> 3 min ago</span>
-																	<p>Lorem ipsum dolor sit amet, </p>
-																</div>
-															</div><!--comment-list end-->
-														</li>
+														@if(p.comentarios != null) {
+															foreach(Comentario c in comentarios){
+																if (p.id == c.idPost)
+																{
+																	<li>
+																		<div class="comment-list">
+																			<div class="comment">
+																				<h3>@c.usuario.nombre @c.usuario.apellido</h3>
+																				<p>@c.contenido</p>
+																			</div>
+																		</div><!--comment-list end-->
+
+																		<span><form asp-controller="Comentarios"
+																				asp-action="Edit"
+																				asp-route-id=@c.id>
+																			<button																
+																			type="submit"
+																			class="btn btn-success btn-sm">
+																			Editar </button>
+																			</form></span>
+
+																		<span><form asp-controller="Comentarios"
+																				asp-action="DeleteConfirmed"
+																				asp-route-id=@c.id>
+																			<button																
+																			type="submit"
+																			class="btn btn-danger btn-sm">
+																			Eliminar </button> 
+																			</form></span>
+																	</li>
+																}
+							 							    }
+														}
+													</ul>
 												</div><!--comment-sec end-->
 												<div class="post-comment">
 													<div class="comment_box">
-														<form>
-															<input type="text" placeholder="Comenta">
+														<form asp-controller="Comentarios"
+															  asp-action="Create"
+															  asp-route-idp=@p.id
+															  asp-route-idu=@Accessor.HttpContext.Session.GetInt32("_id")> 												     
+															<input type="text" name="contenido" placeholder="Comentario">																
 															<button type="submit">Send</button>
 														</form>
 													</div>

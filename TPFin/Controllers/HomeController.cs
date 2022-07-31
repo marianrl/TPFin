@@ -18,7 +18,7 @@ namespace TPFin.Controllers
         public IActionResult Index()
         {
             var postContext = _context.post.Include(p => p.user);
-            var postContextc = _context.post.Include(p => p.user);
+            var comenContext = _context.comentarios;
             var usuariosContext = _context.usuarios;
             var userId = HttpContext.Session.GetInt32("_id");
             var amigosContext = _context.UsuarioAmigo;
@@ -28,6 +28,7 @@ namespace TPFin.Controllers
                 ViewData["Usuario"] = usuariosContext.ToList() :
                 ViewData["Usuario"] = Enumerable.Empty<string>();
             ViewData["Amigos"] = amigosContext.ToList();
+            ViewData["Comentario"] = comenContext.ToList();
             return View();
         }
 
