@@ -34,6 +34,12 @@ namespace TPFin.Controllers
 
         public IActionResult IndexAdmin()
         {
+            var postContext = _context.post.Count();
+            var usuariosContext = _context.usuarios.Count();
+            var tagsContext = _context.tags.Count();
+            ViewData["Usuarios"] = usuariosContext;
+            ViewData["Post"] = postContext;
+            ViewData["Tags"] = tagsContext;
             return View();
         }
 
