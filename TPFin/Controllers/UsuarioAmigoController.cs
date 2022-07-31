@@ -21,16 +21,16 @@ namespace TPFin.Controllers
             _context = context;
         }
 
-        // GET: api/UsuarioAmigo
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<UsuarioAmigo>>> GetUsuarioAmigo()
-        {
-            if (_context.UsuarioAmigo == null)
-            {
-                return NotFound();
-            }
-            return await _context.UsuarioAmigo.ToListAsync();
-        }
+        //// GET: api/UsuarioAmigo
+        //[HttpGet]
+        //public async Task<ActionResult<IEnumerable<UsuarioAmigo>>> GetUsuarioAmigo()
+        //{
+        //    if (_context.UsuarioAmigo == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    return await _context.UsuarioAmigo.ToListAsync();
+        //}
 
         // GET: api/UsuarioAmigo/5
         [HttpGet("{id}")]
@@ -53,9 +53,12 @@ namespace TPFin.Controllers
 
         // POST: api/UsuarioAmigo
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<UsuarioAmigo>> PostUsuarioAmigo(int id, int idAmigo)
+        [HttpGet]
+        public async Task<IActionResult> AgregarUsuarioAmigo()
         {
+            int id = (int)TempData["_idUser"];
+            int idAmigo = (int)TempData["_idAmigo"];
+
             UsuarioAmigo amigo = new UsuarioAmigo(id,idAmigo);
             UsuarioAmigo amegoRell = new UsuarioAmigo(idAmigo, id);
             if (_context.UsuarioAmigo == null)
@@ -85,7 +88,7 @@ namespace TPFin.Controllers
         }
 
         // DELETE: api/UsuarioAmigo/5
-        [HttpDelete("{id}")]
+        [HttpDelete("{id}/{idAmigo}")]
         public async Task<IActionResult> DeleteUsuarioAmigo(int id, int idAmigo)
         {
             if (_context.UsuarioAmigo == null)

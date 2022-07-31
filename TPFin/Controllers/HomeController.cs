@@ -40,6 +40,13 @@ namespace TPFin.Controllers
 
             return RedirectToAction("Index", "Login");
         }
+        
+        public IActionResult AgregarAmigo(int idUser, int idAmigo)
+        {
+            TempData["_idUser"] = idUser;
+            TempData["_idAmigo"] = idAmigo;
+            return RedirectToAction("AgregarUsuarioAmigo", "UsuarioAmigo");
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

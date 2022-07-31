@@ -69,20 +69,33 @@
 										@foreach (Usuario u in usuarios) {
 											if(u.id != Accessor.HttpContext.Session.GetInt32("_id"))
 											{
-												@foreach (UsuarioAmigo ua in usuarioAmigos)
+												List<int> listAmigos = new List<int>();
+
+												foreach(UsuarioAmigo ua in usuarioAmigos)
 												{
-													if(u.id != ua.idUser)
+													if(ua.idUser == Accessor.HttpContext.Session.GetInt32("_id"))
 													{
-														<div class="suggestions-list">
-															<div class="suggestion-usd">
-																<img src="~/logoprofile.png" alt="">
-																<div class="sgt-text">
-																	<h4>@u.nombre @u.apellido</h4>
-																</div>
-																<span><i class="bi bi-person-plus-fill"></i></span>
-															</div>
-														</div><!--suggestions-list end-->
+														listAmigos.Add(ua.idAmigo);
 													}
+												}
+												if(!listAmigos.Contains(u.id))
+												{
+													<div class="suggestions-list">
+														<div class="suggestion-usd">
+															<div>
+																<img src="~/logoprofile.png" alt="">
+															</div>
+															<div class="sgt-text">
+																<h4>@u.nombre @u.apellido</h4>
+															</div>
+															<span><a class="bi bi-person-plus-fill" 
+																asp-controller="Home"
+																asp-action="AgregarAmigo"
+																asp-route-idUser=@Accessor.HttpContext.Session.GetInt32("_id")
+																asp-route-idAmigo=@u.id>
+															</a></span>
+														</div>
+													</div><!--suggestions-list end-->
 												}
 											}			
 										}
@@ -201,18 +214,30 @@
 											<h3 >Mis amigos </h3>
 											<span><i class="bi bi-heart-fill"></i></span>
 										</div><!--sd-title end-->
-										<div class="suggestions-list">
-											<div class="suggestion-usd">
-												<div class="sgt-text">
-													<h4>Jessica William</h4>
+										@foreach (Usuario u in usuarios) {
+											if(u.id != Accessor.HttpContext.Session.GetInt32("_id"))
+											{
+												foreach (UsuarioAmigo ua in usuarioAmigos)
+												{
+													if(u.id != ua.idAmigo && u.id == ua.idUser)
+													{
+														<div class="suggestions-list">
+															<div class="suggestion-usd">
+																<div class="sgt-text">
+																	<h4>@u.nombre @u.apellido</h4>
 													
-												</div>
-												<span><i class="bi bi-x-circle"></i></span>
-											</div>
-											<div class="view-more">
-												<a href="#" title="">View More</a>
-											</div>
-										</div><!--suggestions-list end-->
+																</div>
+																<span><a class="bi bi-x-circle" 
+																	asp-controller="UsuarioAmigo"
+																	asp-action="DeleteUsuarioAmigo"
+																	asp-route-id=@u.id
+																	asp-route-idAmigo=@ua.idAmigo>></a></span>
+															</div>
+														</div>
+													}
+												}
+											}
+										}<!--suggestions-list end-->
 									</div>
 								</div><!--right-sidebar end-->
 							</div>
