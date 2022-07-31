@@ -44,7 +44,7 @@ namespace TPFin.Controllers
                     int intFallidos = userList.First().intentosFallidos;
                     
 
-                    if (!isAdmin)
+                    if (isAdmin)
                     {
                         HttpContext.Session.SetString(SessionNyaKey, nombre + " " + apellido);
                         return RedirectToAction("IndexAdmin", "Home");
@@ -73,8 +73,8 @@ namespace TPFin.Controllers
                 }
                 else
                 {
-                    if (userEmail[0] == usuario.email)
-                    {
+                    if (userEmail.Length > 0)
+                    {                        
                         IEnumerable<Usuario> aux = db.usuarios.Where(x => x.email == usuario.email);
                         Usuario usuarioToUpdate = aux.First();
                         usuarioToUpdate.intentosFallidos++;
@@ -89,7 +89,7 @@ namespace TPFin.Controllers
                         else
                         {
                             TempData["Message"] = "Password mal ingresada, intente de nuevo";
-                        }
+                        }                        
                     }
                     else
                     {

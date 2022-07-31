@@ -88,12 +88,14 @@
 															<div class="sgt-text">
 																<h4>@u.nombre @u.apellido</h4>
 															</div>
-															<span><a class="bi bi-person-plus-fill" 
-																asp-controller="Home"
-																asp-action="AgregarAmigo"
+															<span><form 
+																asp-controller="UsuarioAmigo"
+																asp-action="Edit"
 																asp-route-idUser=@Accessor.HttpContext.Session.GetInt32("_id")
 																asp-route-idAmigo=@u.id>
-															</a></span>
+																<button class="bi bi-person-plus-fill"
+																type="submit"
+																></button></form></span>
 														</div>
 													</div><!--suggestions-list end-->
 												}
@@ -227,11 +229,14 @@
 																	<h4>@u.nombre @u.apellido</h4>
 													
 																</div>
-																<span><a class="bi bi-x-circle" 
-																	asp-controller="UsuarioAmigo"
-																	asp-action="DeleteUsuarioAmigo"
+																<span><form asp-controller="UsuarioAmigo"
+																	asp-action="DeleteConfirmed"
 																	asp-route-id=@u.id
-																	asp-route-idAmigo=@ua.idAmigo>></a></span>
+																	asp-route-idAmigo=@ua.idAmigo>
+																	<button																
+																	type="submit"
+																	class="bi bi-x-circle">
+																	</button></form></span>
 															</div>
 														</div>
 													}
