@@ -9,9 +9,9 @@
 
 	if(null != TempData["Message"])
    {
-      <script type="text/javascript">
-       alert('@TempData["Message"]');
-      </script>
+	<script type="text/javascript">
+	   	alert('@TempData["Message"]');
+	</script>
    }
     
 }
@@ -146,9 +146,13 @@
 														</div>
 													</div>
 												</div>
-												<div class="job_descp">
-
+												@if(p.idUser == @Accessor.HttpContext.Session.GetInt32("_id")){
+														<div class="job_descp">
 													<ul class="job-dt">
+														<li><a 
+															asp-controller="Posts"
+															asp-action="Edit"
+															asp-route-id=@p.id>Editar Post</a></li>
 														<li><a 
 															asp-controller="Posts"
 															asp-action="Delete"
@@ -166,6 +170,8 @@
 														<li><a href="#" title="">Wordpress</a></li> 	
 													</ul>
 												</div>
+													}
+													
 												<div class="job-status-bar">
 																										<!-- Listado de reacciones-->
 													<ul class="like-com">
@@ -194,24 +200,24 @@
 																				<p>@c.contenido</p>
 																			</div>
 																		</div><!--comment-list end-->
+																		@{
+																			if(c.idUser == @Accessor.HttpContext.Session.GetInt32("_id")){
+																				<a 
+																					class="btn btn-success btn-sm"
+																					asp-controller="Comentarios"
+																					asp-action="Edit"
+																					asp-route-id="@c.id">
+																					Editar</a>
 
-																		<span><form asp-controller="Comentarios"
-																				asp-action="Edit"
+																			<a 
+																				class="btn btn-danger btn-sm"
+																				asp-controller="Comentarios"
+																				asp-action="Delete"
 																				asp-route-id=@c.id>
-																			<button																
-																			type="submit"
-																			class="btn btn-success btn-sm">
-																			Editar </button>
-																			</form></span>
-
-																		<span><form asp-controller="Comentarios"
-																				asp-action="DeleteConfirmed"
-																				asp-route-id=@c.id>
-																			<button																
-																			type="submit"
-																			class="btn btn-danger btn-sm">
-																			Eliminar </button> 
-																			</form></span>
+																				Eliminar
+																			</a>
+																			}
+																		}
 																	</li>
 																}
 							 							    }

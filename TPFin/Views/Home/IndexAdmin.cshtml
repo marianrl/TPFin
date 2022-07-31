@@ -3,6 +3,13 @@
 
 @{ ViewData["Title"] = "HomeAdmin"; 
 
+	if(null != TempData["Message"])
+   {
+	<script type="text/javascript">
+	   	alert('@TempData["Message"]');
+	</script>
+   }
+
 }
 
 <!DOCTYPE html>

@@ -46,7 +46,9 @@ namespace TPFin.Controllers
 
                     if (isAdmin)
                     {
+                        HttpContext.Session.SetInt32(SessionIdKey, idUser);
                         HttpContext.Session.SetString(SessionNyaKey, nombre + " " + apellido);
+                        HttpContext.Session.SetString(SessionAdminKey, isAdmin.ToString());
                         return RedirectToAction("IndexAdmin", "Home");
                     }
                     else

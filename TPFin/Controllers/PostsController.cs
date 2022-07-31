@@ -132,8 +132,8 @@ namespace TPFin.Models
                     throw;
                 }
             }
-            return RedirectToAction(nameof(Index));
-            ViewData["idUser"] = new SelectList(_context.usuarios, "id", "id", post.idUser);
+            TempData["Message"] = "Post Modificado";
+            return RedirectToAction(nameof(Index), "Home");
         }
 
         // GET: Posts/Delete/5
@@ -171,6 +171,7 @@ namespace TPFin.Models
             }
             
             await _context.SaveChangesAsync();
+            TempData["Message"] = "Post Eliminado";
             return RedirectToAction(nameof(Index),"Home");
         }
 

@@ -1,4 +1,5 @@
 ﻿@model TPFin.Models.Comentario
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor Accessor
 
 @{
     ViewData["Title"] = "Create";
@@ -12,33 +13,30 @@
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="idPost" class="control-label"></label>
-                <select asp-for="idPost" class ="form-control" asp-items="ViewBag.idPost"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="idUser" class="control-label"></label>
-                <select asp-for="idUser" class ="form-control" asp-items="ViewBag.idUser"></select>
-            </div>
+            <input type="hidden" asp-for="idPost" />
+            <input type="hidden" asp-for="idUser" />
+            <input type="hidden" asp-for="fecha" />
+            
             <div class="form-group">
                 <label asp-for="contenido" class="control-label"></label>
                 <input asp-for="contenido" class="form-control" />
                 <span asp-validation-for="contenido" class="text-danger"></span>
             </div>
+            
             <div class="form-group">
-                <label asp-for="fecha" class="control-label"></label>
-                <input asp-for="fecha" class="form-control" />
-                <span asp-validation-for="fecha" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input
+                    asp-route-idp=@ViewData["idPost"]
+                    asp-route-idu=@Accessor.HttpContext.Session.GetInt32("_id")
+                    type="submit"
+                    value="Create" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-controller="Home"
+            asp-action="IndexAdmin">Volver al menu</a>
 </div>
 
 @section Scripts {

@@ -46,10 +46,11 @@ namespace TPFin.Models
         }
 
         // GET: Comentarios/Create
-        public IActionResult Create()
+        public IActionResult Create(int id)
         {
-            ViewData["idPost"] = new SelectList(_context.post, "id", "id");
-            ViewData["idUser"] = new SelectList(_context.usuarios, "id", "id");
+
+            ViewData["idPost"] = id;
+            ViewData["idUser"] = "";
             return View();
         }
 
@@ -67,27 +68,35 @@ namespace TPFin.Models
             _context.Add(comentario);
             await _context.SaveChangesAsync();
             TempData["Message"] = "Comentario Realizado";
-            return RedirectToAction(nameof(Index), "Home");
+            string adm = HttpContext.Session.GetString("_admin").ToString();
 
-
+            if (adm == "True")
+            {
+                return RedirectToAction("IndexAdmin", "Home");
+            }
+            else
+            {
+                return RedirectToAction(nameof(Index), "Home");
+            }
 
         }
 
         // GET: Comentarios/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+ 
+
             if (id == null || _context.comentarios == null)
             {
                 return NotFound();
             }
 
             var comentario = await _context.comentarios.FindAsync(id);
+
             if (comentario == null)
             {
                 return NotFound();
             }
-            ViewData["idPost"] = new SelectList(_context.post, "id", "id", comentario.idPost);
-            ViewData["idUser"] = new SelectList(_context.usuarios, "id", "id", comentario.idUser);
             return View(comentario);
         }
 
@@ -96,8 +105,10 @@ namespace TPFin.Models
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("id,idPost,idUser,contenido,fecha")] Comentario comentario)
+        public async Task<IActionResult> Edit(int id, [Bind("id,idPost,idUser,contenido,fecha")] Comentario comentario, int idp, int idu)
         {
+
+
             if (id != comentario.id)
             {
                 return NotFound();
@@ -119,7 +130,8 @@ namespace TPFin.Models
                     throw;
                 }
             }
-            return RedirectToAction(nameof(Index));
+                TempData["Message"] = "Comentario Modificado";
+                return RedirectToAction(nameof(Index), "Home");
 
             ViewData["idPost"] = new SelectList(_context.post, "id", "id", comentario.idPost);
             ViewData["idUser"] = new SelectList(_context.usuarios, "id", "id", comentario.idUser);
@@ -155,16 +167,10 @@ namespace TPFin.Models
                 return Problem("Entity set 'MyContext.comentarios'  is null.");
             }
             var comentario = await _context.comentarios.FindAsync(id);
-            if (comentario != null && comentario.idUser == HttpContext.Session.GetInt32("_id"))
-            {
-                _context.comentarios.Remove(comentario);
-                await _context.SaveChangesAsync();
-            }
-            else
-            {
-                TempData["Message"] = "No puede eliminar Comentarios Ajenos";
-             
-            }
+                
+            _context.comentarios.Remove(comentario);
+            await _context.SaveChangesAsync();
+            TempData["Message"] = "Comentario Eliminado";
             return RedirectToAction(nameof(Index), "Home");
         }
 
