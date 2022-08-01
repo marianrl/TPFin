@@ -73,8 +73,8 @@ namespace TPFin.Models
                 await _context.SaveChangesAsync();
                 TempData["idPost"] = post.id;
                 TempData["Message"] = "Post Creado";
-                RedirectToAction("Create", "Tags");
-                return RedirectToAction(nameof(Index), "Home");
+                return RedirectToAction("Create", "Tags");
+                //return RedirectToAction(nameof(Index), "Home");
 
             }
             else 

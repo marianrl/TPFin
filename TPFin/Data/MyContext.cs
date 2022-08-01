@@ -18,7 +18,7 @@ namespace TPFin.Data
         public MyContext(DbContextOptions<MyContext> options) : base(options) { }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Data Source=DESKTOP-AG2F151\SQLEXPRESS01;Initial Catalog=tp_final;Integrated Security=True");
+            optionsBuilder.UseSqlServer(@"data source=DESKTOP-ND87ERP\MSSQLSERVER01;initial catalog=TPFinal;trusted_connection=true");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
