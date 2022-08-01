@@ -69,22 +69,41 @@ namespace TPFin.Models
             if(tags != null)
             {
                 _context.Add(post);
-                TempData["Tags"] = tags;
                 await _context.SaveChangesAsync();
-                TempData["idPost"] = post.id;
-                TempData["Message"] = "Post Creado";
-                return RedirectToAction("Create", "Tags");
-                //return RedirectToAction(nameof(Index), "Home");
 
+                List<string> palabras = tags.Split(' ').ToList();
+                
+                foreach (string a in palabras)
+                {
+                    Tag tag = new Tag();
+
+                    if (_context.tags.Where(x => x.palabra == a).ToArray().Length > 0)
+                    {
+                        tag = _context.tags.Where(x => x.palabra == a).First();
+                    }
+                    else
+                    {
+                        tag.palabra = a;
+                        _context.Add(tag);
+                        await _context.SaveChangesAsync();
+                    }
+
+                    PostsTags postsTags = new PostsTags();
+                    postsTags.idTag = tag.id;
+                    postsTags.idPost = post.id;
+                    _context.Add(postsTags);
+                    await _context.SaveChangesAsync();
+                }
             }
             else 
             {
                 _context.Add(post);
                 await _context.SaveChangesAsync();
                 TempData["Message"] = "Post Creado";
-                return RedirectToAction(nameof(Index), "Home");
             }
-            ViewData["idUser"] = new SelectList(_context.usuarios, "id", "id", post.idUser);
+
+            TempData["Message"] = "Post Creado";
+            return RedirectToAction(nameof(Index), "Home");
         }
 
         // GET: Posts/Edit/5

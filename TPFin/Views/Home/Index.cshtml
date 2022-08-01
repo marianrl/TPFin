@@ -21,7 +21,7 @@
 
 <body>	
 
-	<div class="wrapper align-content-center hola">	
+	<div class="wrapper align-content-center">	
 
 		<main>
 			<div class="main-section">
@@ -301,13 +301,16 @@
 								<textarea name="contenido" placeholder="Contenido"></textarea>
 							</div>
 							<div class="col-lg-12">
+								<input type="text" name="tags" placeholder="Tags">
+							</div>
+							<div class="col-lg-12">
 								<ul>
 									<li><button class="active mb-4" type="submit" value="post">Postea</button></li>
 								</ul>
 							</div>
 						</div>
 					</form>
-					<form 
+					@*<form 
 					asp-controller="Tags"
 					asp-action="Create"
 					>
@@ -317,12 +320,12 @@
 							</div>
 							<div class="col-lg-12">
 								<ul>
-									<li><button class="active" type="submit" value="tag">Agregar tag</button></li>
+									<li><button class="active" type="submit" value="tags">Agregar tag</button></li>
 									
 								</ul>
 							</div>
 						</div>
-					</form>
+					</form>*@
 				</div><!--post-project-fields end-->
 				<a href="#" title=""><i class="bi bi-x-circle accent-dark"></i></a>
 			</div><!--post-project end-->
